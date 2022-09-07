@@ -18,5 +18,6 @@ public class MainActivity extends AppCompatActivity {
     public void OpenNoteActivity(View view) {
         Intent intent = new Intent(this, CreateNoteActivity.class);
         startActivity(intent);
+
     }
 }
