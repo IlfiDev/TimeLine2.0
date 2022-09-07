@@ -1,8 +1,9 @@
 package com.example.timeline20;
 
+import java.io.Serializable;
 import java.sql.Time;
 
-public class Note {
+public class Note implements Serializable {
     private String label;
     private String noteText;
     private Time date_time = null;
@@ -23,6 +24,5 @@ public class Note {
     public void SetNoteText(String text){
         this.noteText = text;
     }
-
 
 }
