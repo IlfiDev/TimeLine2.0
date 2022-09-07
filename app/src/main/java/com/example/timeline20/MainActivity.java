@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenNoteActivity(View view) {
-        Intent intent = new Intent(this, ChengeNoteActivity.class);
+        Intent intent = new Intent(this, ChangeNoteActivity.class);
         startActivity(intent);
 
     }
