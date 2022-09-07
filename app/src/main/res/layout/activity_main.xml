@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Make Note Great Again"
-        android:onClick="OpenNoteActivity"
+        android:onClick="CreateNoteActivity"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

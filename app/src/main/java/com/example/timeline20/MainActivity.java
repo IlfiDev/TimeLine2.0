@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.LinkedList;
 
+public class MainActivity extends AppCompatActivity {
+    private LinkedList<Note> notesList = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,8 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void OpenNoteActivity(View view) {
+    public void CreateNoteActivity(View view) {
         Intent intent = new Intent(this, ChangeNoteActivity.class);
+
         startActivity(intent);
 
     }
