@@ -21,10 +21,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:inputType='textMultiLine'
-        android:lines="23"
-        android:maxLines="23"
-        android:minLines="23"
+        android:lines="19"
+        android:maxLines="19"
+        android:minLines="19"
         app:layout_constraintTop_toBottomOf="@id/note_label_field"
         tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/save_note"
+        android:layout_width="103dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/note_field" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
