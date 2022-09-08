@@ -163,27 +163,6 @@ public class MainActivity extends AppCompatActivity {
         save_info.edit().remove("what_fragment_active").apply();
     }
 
-    public void CreateNoteActivity(View view) {
 
-        Intent intent = new Intent(this, ChangeNoteActivity.class);
-        startActivityForResult(intent, 1);
 
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Note newNote = (Note) data.getSerializableExtra("note");
-        notesList.add(0, newNote);
-        for (Note note : notesList){
-            ConstraintLayout item = (ConstraintLayout)findViewById(R.id.main_layout);
-            View noteView = getLayoutInflater().inflate(R.layout.note_layout, null);
-
-            TextView textView = (TextView) noteView.findViewById(R.id.note_label);
-            textView.setText(notesList.get(0).GetLabel());
-            item.addView(noteView);
-        }
-
-        //item.refreshDrawableState();
-
-    }
 }

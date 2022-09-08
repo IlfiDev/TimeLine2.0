@@ -27,4 +27,7 @@ public class Note implements Serializable {
     public String GetLabel(){
         return label;
     }
+    public String GetText(){
+        return noteText;
+    }
 }

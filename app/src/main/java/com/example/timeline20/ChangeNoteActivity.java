@@ -20,7 +20,9 @@ public class ChangeNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_note);
         label = (EditText) findViewById(R.id.note_label_field);
         text = (EditText) findViewById(R.id.note_field);
-
+        Bundle extras = getIntent().getExtras();
+        label.setText(extras.getString("Title"));
+        text.setText(extras.getString("Text"));
     }
 
     public void SaveAndQuit(View view) {
