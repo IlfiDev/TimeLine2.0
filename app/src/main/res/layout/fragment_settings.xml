@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bg"
@@ -38,23 +38,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar_settings_textview" />
 
-    <Button
-        android:id="@+id/language_button"
-        style="@style/Widget.Material3.Button"
-        android:layout_width="0dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/gray_175"
-        android:insetTop="0dp"
+   <Button
+       android:id="@+id/language_button"
+       style="@style/Widget.Material3.Button"
+       android:layout_width="0dp"
+       android:layout_height="86dp"
+       android:layout_marginStart="24dp"
+       android:layout_marginTop="8dp"
+       android:layout_marginEnd="24dp"
+       android:backgroundTint="@color/gray_175"
+       android:insetTop="0dp"
 
-        android:insetBottom="0dp"
-        app:cornerRadius="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/theme_button" />
+       android:insetBottom="0dp"
+       app:cornerRadius="16dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/theme_button" />
 
     <Button
         android:id="@+id/support_us_button"

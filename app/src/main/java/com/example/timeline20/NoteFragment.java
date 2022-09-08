@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.util.Objects;
 
 
@@ -25,7 +27,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_note, container, false);
-        ImageButton addNoteButton = (ImageButton) view.findViewById(R.id.add_note_button);
+        MaterialButton addNoteButton = view.findViewById(R.id.add_note_button);
         addNoteButton.setOnClickListener(this);
 
         return view;
