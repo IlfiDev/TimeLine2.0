@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/fragment_note.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/note_layout.xml" value="0.1" />
       </map>
     </option>
   </component>
