@@ -47,7 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Заметки"
+                android:text="@string/notes"
                 android:textSize="16dp"
                 android:fontFamily="@font/nunito_sans_bold"
                 android:textColor="@color/bar_text"
@@ -90,8 +90,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Календарь"
-                android:textSize="16dp"
+                android:text="@string/calendar"
+                android:textSize="16sp"
                 android:fontFamily="@font/nunito_sans_bold"
                 android:textColor="@color/bar_text"
                 android:id="@+id/calendar_textview"
@@ -131,8 +131,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Настройка"
-                android:textSize="16dp"
+                android:text="@string/settings"
+                android:textSize="16sp"
                 android:fontFamily="@font/nunito_sans_bold"
                 android:textColor="@color/bar_text"
                 android:id="@+id/settings_textview"
