@@ -24,5 +24,7 @@ public class Note implements Serializable {
     public void SetNoteText(String text){
         this.noteText = text;
     }
-
+    public String GetLabel(){
+        return label;
+    }
 }

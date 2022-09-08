@@ -4,16 +4,20 @@ import static java.security.AccessController.getContext;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import java.util.LinkedList;
@@ -70,12 +74,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void CreateNoteActivity(View view) {
-        Intent intent = new Intent(this, ChangeNoteActivity.class);
-
-        startActivity(intent);
-
-    }
 
     private void switch_fragment(Integer fragment_id) {
         if(fragment_id == 1) {
@@ -165,4 +163,27 @@ public class MainActivity extends AppCompatActivity {
         save_info.edit().remove("what_fragment_active").apply();
     }
 
+    public void CreateNoteActivity(View view) {
+
+        Intent intent = new Intent(this, ChangeNoteActivity.class);
+        startActivityForResult(intent, 1);
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Note newNote = (Note) data.getSerializableExtra("note");
+        notesList.add(0, newNote);
+        for (Note note : notesList){
+            ConstraintLayout item = (ConstraintLayout)findViewById(R.id.main_layout);
+            View noteView = getLayoutInflater().inflate(R.layout.note_layout, null);
+
+            TextView textView = (TextView) noteView.findViewById(R.id.note_label);
+            textView.setText(notesList.get(0).GetLabel());
+            item.addView(noteView);
+        }
+
+        //item.refreshDrawableState();
+
+    }
 }
