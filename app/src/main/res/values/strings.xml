@@ -15,4 +15,11 @@
 
     <string name="search_by_title">Поиск по заголовку</string>
     <string name="sort_by_date">По дате</string>
+    <string name="change_note">Изменение заметки</string>
+    <string name="create_note">Создание заметки</string>
+    <string name="title">Заголовок</string>
+    <string name="text">Текст</string>
+    <string name="description">Описание</string>
+    <string name="save">Сохранить</string>
+    
 </resources>

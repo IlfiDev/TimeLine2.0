@@ -17,7 +17,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_note);
+        setContentView(R.layout.activity_change_note);
         label = (EditText) findViewById(R.id.note_label_field);
         text = (EditText) findViewById(R.id.note_field);
         Bundle extras = getIntent().getExtras();
