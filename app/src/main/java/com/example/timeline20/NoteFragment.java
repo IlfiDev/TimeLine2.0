@@ -63,6 +63,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("Title", "");
                 intent.putExtra("Text", "");
                 startActivityForResult(intent, 1);
+
         }
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
