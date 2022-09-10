@@ -7,15 +7,18 @@ public class Note implements Serializable {
     private String label;
     private String noteText;
     private Time date_time = null;
+    private int lineCount;
 
-    public Note(String label, String noteText, Time time){
+    public Note(String label, String noteText, Time time, int lineCount){
         this.label = label;
         this.noteText = noteText;
         this.date_time = time;
+        this.lineCount = lineCount;
     }
-    public Note(String label, String noteText){
+    public Note(String label, String noteText, int lineCount){
         this.label = label;
         this.noteText = noteText;
+        this.lineCount = lineCount;
     }
 
     public void SetLabel(String label){
@@ -30,4 +33,5 @@ public class Note implements Serializable {
     public String GetText(){
         return noteText;
     }
+    public int GetLineCount(){return lineCount;}
 }

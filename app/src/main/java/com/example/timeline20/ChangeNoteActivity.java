@@ -27,7 +27,8 @@ public class ChangeNoteActivity extends AppCompatActivity {
     }
 
     public void SaveAndQuit(View view) {
-        Note note = new Note(label.getText().toString(), text.getText().toString());
+        int lineCount = text.getLineCount();
+        Note note = new Note(label.getText().toString(), text.getText().toString(), lineCount + 1);
         Intent data = new Intent();
         data.putExtra("note",note);
 

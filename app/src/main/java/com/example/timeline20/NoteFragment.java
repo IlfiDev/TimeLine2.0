@@ -78,10 +78,12 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
 //            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
 //            params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
             params.topMargin = (int) layout_top_margin;
+            params.height = (notesList.get(i).GetLineCount() * 1000);
             noteView.setLayoutParams(params);
             layout_top_margin += 100;
             TextView textView = (TextView) noteView.findViewById(R.id.note_label);
             textView.setText(notesList.get(i).GetLabel());
+
             item.addView(noteView);
             noteView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
