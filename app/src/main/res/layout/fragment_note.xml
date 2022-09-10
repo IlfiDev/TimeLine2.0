@@ -106,7 +106,7 @@
         app:icon="@drawable/ic_pencil"
         app:iconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/place_for_notes" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 
