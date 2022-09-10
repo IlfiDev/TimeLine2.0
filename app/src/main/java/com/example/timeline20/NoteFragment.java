@@ -70,10 +70,16 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         Note newNote = (Note) data.getSerializableExtra("note");
         notesList.add(0, newNote);
+        int layout_top_margin = 100;
         for (int i = 0; i < notesList.size(); i++){
             ConstraintLayout item = (ConstraintLayout) view.findViewById(R.id.fragment_note);
-            View noteView = getLayoutInflater().inflate(R.layout.note_layout, null);
-
+            View noteView = getLayoutInflater().inflate(R.layout.note_layout, (ViewGroup) view, false);
+            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) noteView.getLayoutParams();
+//            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+//            params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.topMargin = (int) layout_top_margin;
+            noteView.setLayoutParams(params);
+            layout_top_margin += 100;
             TextView textView = (TextView) noteView.findViewById(R.id.note_label);
             textView.setText(notesList.get(i).GetLabel());
             item.addView(noteView);
