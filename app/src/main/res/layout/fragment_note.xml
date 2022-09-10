@@ -70,7 +70,6 @@
 
     <!--Место для записок-->
     <ScrollView
-        android:id="@+id/place_for_notes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
 
@@ -81,6 +80,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sort_by_date_button"
         app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/place_for_notes"/>
+
 
     </ScrollView>
 
