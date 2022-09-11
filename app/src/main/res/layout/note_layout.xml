@@ -1,24 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="201dp"
+    android:background="@drawable/note_shape"
     xmlns:xmals="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/note_layout">
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="201dp"
+        android:background="@color/white"
+        android:hapticFeedbackEnabled="true"
+
+        xmals:layout_constraintTop_toTopOf="parent"
+        xmals:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/note_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:fontFamily="@font/nunito_sans_bold"
+
+        xmals:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        xmals:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        xmals:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"/>
 
     <TextView
         android:id="@+id/note_label"
-        android:layout_width="375dp"
-        android:layout_height="142dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="226dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/note_shape"
-        android:text="Text"
-        tools:ignore="MissingConstraints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/nunito_sans_regular"
+
+        android:gravity="top"
+        android:text="Hello"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        xmals:layout_constraintBottom_toBottomOf="parent"
         xmals:layout_constraintEnd_toEndOf="parent"
-        xmals:layout_constraintHorizontal_bias="0.435"
         xmals:layout_constraintStart_toStartOf="parent"
-        xmals:layout_constraintTop_toTopOf="parent" />
+        xmals:layout_constraintTop_toBottomOf="@id/note_title"
+        xmals:layout_constraintVertical_bias="0.0" />
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
