@@ -2,8 +2,8 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="375dp"
+    android:layout_height="161dp"
     xmlns:xmals="http://schemas.android.com/apk/res-auto"
     android:id="@+id/note_layout">
 
@@ -11,9 +11,7 @@
         android:id="@+id/note_label"
         android:layout_width="375dp"
         android:layout_height="142dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="226dp"
-        android:layout_marginEnd="24dp"
+
         android:background="@drawable/note_shape"
         android:text="Text"
         tools:ignore="MissingConstraints"

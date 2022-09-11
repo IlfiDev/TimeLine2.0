@@ -70,21 +70,32 @@
 
     <!--Место для записок-->
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:id="@+id/notes_scrollView"
-        android:layout_marginTop="16dp"
+        android:layout_width="375dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="223dp"
+        android:layout_marginEnd="24dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+        <!---
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sort_by_date_button"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+    -->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/place_for_notes"/>
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/place_for_notes"/>-->
 
 
     </ListView>

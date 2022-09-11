@@ -26,7 +26,8 @@ import java.util.Objects;
 
 
 public class NoteFragment extends Fragment implements View.OnClickListener {
-    private List<Note> notesList;
+    private LinkedList<Note> notesList = new LinkedList<Note>() {
+    };
     View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,11 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d("COCK", "Dick");
         view = inflater.inflate(R.layout.fragment_note, container, false);
         MaterialButton addNoteButton = view.findViewById(R.id.add_note_button);
         addNoteButton.setOnClickListener(this);
-
+        System.out.println("ABOBA");
         return view;
     }
 
@@ -77,14 +79,33 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Note newNote = (Note) data.getSerializableExtra("note");
-        notesList.add(0, newNote);
-        ListView scView = (ListView) this.getActivity().findViewById(R.id.notes_scrollView);
+        int indexOfNote = notesList.indexOf(newNote);
+        if(indexOfNote != -1){
+            notesList.set(indexOfNote, newNote);
+        }
+        else{
+            notesList.add(0, newNote);
+
+        }
+        ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
+
+        ListView listView = (ListView) layout.findViewById(R.id.notes_scrollView);
         int layout_top_margin = 100;
-        NotesAdapter adapter = new NotesAdapter(this.getContext(), notesList);
+        NotesAdapter adapter = new NotesAdapter(this.getContext(), R.layout.note_layout, notesList);
 
         ListView lv;
 
-        scView.setAdapter(adapter);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
+                Note note = (Note)adapterView.getAdapter().getItem(i);
+                intent.putExtra("Title", note.GetLabel());
+                intent.putExtra("Text", note.GetText());
+                startActivityForResult(intent, 1);
+            }
+        });
 //        for (int i = 0; i < notesList.size(); i++){
 //
 //            ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
