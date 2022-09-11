@@ -88,6 +88,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             params.topMargin = (int) layout_top_margin;
             params.height = (notesList.get(i).GetLineCount() * 500);
             noteView.setLayoutParams(params);
+
             layout_top_margin += 100;
             TextView textView = (TextView) noteView.findViewById(R.id.note_label);
             textView.setText(notesList.get(i).GetLabel());
