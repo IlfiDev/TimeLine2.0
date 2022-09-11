@@ -10,19 +10,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.timeline20.adapter.NotesAdapter;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 
 public class NoteFragment extends Fragment implements View.OnClickListener {
-    private LinkedList<Note> notesList = new LinkedList<>();
+    private List<Note> notesList;
     View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,28 +78,33 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         Note newNote = (Note) data.getSerializableExtra("note");
         notesList.add(0, newNote);
+        ListView scView = (ListView) this.getActivity().findViewById(R.id.notes_scrollView);
         int layout_top_margin = 100;
-        for (int i = 0; i < notesList.size(); i++){
+        NotesAdapter adapter = new NotesAdapter(this.getContext(), notesList);
 
+        ListView lv;
 
-            ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
-            ScrollView scView = (ScrollView) layout.findViewById(R.id.notes_scrollView);
-            ConstraintLayout placeForNotes = (ConstraintLayout) scView.findViewById(R.id.place_for_notes);
+        scView.setAdapter(adapter);
+//        for (int i = 0; i < notesList.size(); i++){
+//
+//            ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
+//            ScrollView scView = (ScrollView) layout.findViewById(R.id.notes_scrollView);
+//            ConstraintLayout placeForNotes = (ConstraintLayout) scView.findViewById(R.id.place_for_notes);
+//
+//            View noteView = getLayoutInflater().inflate(R.layout.note_layout, placeForNotes, false);
+//
+//            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) noteView.getLayoutParams();
+//            params.topMargin = (int) layout_top_margin;
+//            params.height = (notesList.get(i).GetLineCount() * 500);
+//            noteView.setLayoutParams(params);
+//
+//            layout_top_margin += 100;
+//            TextView textView = (TextView) noteView.findViewById(R.id.note_label);
+//            textView.setText(notesList.get(i).GetLabel());
+//            placeForNotes.addView(noteView);
+//            noteView.setOnClickListener(this);
 
-            View noteView = getLayoutInflater().inflate(R.layout.note_layout, placeForNotes, false);
-
-            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) noteView.getLayoutParams();
-            params.topMargin = (int) layout_top_margin;
-            params.height = (notesList.get(i).GetLineCount() * 500);
-            noteView.setLayoutParams(params);
-
-            layout_top_margin += 100;
-            TextView textView = (TextView) noteView.findViewById(R.id.note_label);
-            textView.setText(notesList.get(i).GetLabel());
-            placeForNotes.addView(noteView);
-            noteView.setOnClickListener(this);
-
-        }
+//        }
 
 
         //item.refreshDrawableState();
