@@ -45,6 +45,7 @@ public class NotesAdapter extends BaseAdapter {
         if(newView == null){
             newView = layoutInflater.inflate(resourceLayout, null);
 
+
         }
         TextView title = (TextView) newView.findViewById(R.id.note_label);
         //EditText edit_content = (EditText) newView.findViewById((R.id.note))
