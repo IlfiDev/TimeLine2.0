@@ -15,6 +15,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
     EditText label;
     EditText text;
     Time time;
+    Note noteFromOutside;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,15 +25,26 @@ public class ChangeNoteActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         label.setText(extras.getString("Title"));
         text.setText(extras.getString("Text"));
+        noteFromOutside = (Note) extras.getSerializable("NoteObject");
     }
 
     public void SaveAndQuit(View view) {
-        int lineCount = text.getLineCount();
-        Note note = new Note(label.getText().toString(), text.getText().toString(), lineCount + 1);
-        Intent data = new Intent();
-        data.putExtra("note",note);
 
-        setResult(RESULT_OK,data);
+        if(noteFromOutside == null){
+            int lineCount = text.getLineCount();
+            Note note = new Note(label.getText().toString(), text.getText().toString(), lineCount + 1);
+            Intent data = new Intent();
+            data.putExtra("note",note);
+            setResult(RESULT_FIRST_USER,data);
+        }
+        else{
+            Intent data = new Intent();
+            noteFromOutside.SetNoteText(text.getText().toString());
+            noteFromOutside.SetLabel(label.getText().toString());
+            data.putExtra("note", noteFromOutside);
+            setResult(RESULT_OK, data);
+        }
+
         finish();
     }
     @Override

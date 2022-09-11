@@ -1,5 +1,6 @@
 package com.example.timeline20;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -78,15 +79,21 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Note newNote = (Note) data.getSerializableExtra("note");
-        int indexOfNote = notesList.indexOf(newNote);
-        if(indexOfNote != -1){
-            notesList.set(indexOfNote, newNote);
+        Note newNote;
+        if(resultCode == Activity.RESULT_FIRST_USER){
+            newNote = (Note) data.getSerializableExtra("note");
+            notesList.add(0, newNote);
         }
         else{
-            notesList.add(0, newNote);
-
+            newNote = (Note) data.getSerializableExtra("note");
+            for(int i = 0; i < notesList.size(); i++){
+                if(notesList.get(i).GetId() == newNote.GetId()){
+                    notesList.set(i, newNote);
+                    break;
+                }
+            }
         }
+
         ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
 
         ListView listView = (ListView) layout.findViewById(R.id.notes_scrollView);
@@ -103,6 +110,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
                 Note note = (Note)adapterView.getAdapter().getItem(i);
                 intent.putExtra("Title", note.GetLabel());
                 intent.putExtra("Text", note.GetText());
+                intent.putExtra("NoteObject", note);
                 startActivityForResult(intent, 1);
             }
         });
