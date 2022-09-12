@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
@@ -24,8 +26,27 @@ import java.util.Objects;
 public class NoteFragment extends Fragment implements View.OnClickListener {
     private LinkedList<Note> notesList = new LinkedList<Note>() {
     };
+    Bundle savedList = new Bundle();
+
 
     View view;
+
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putSerializable("SavedNotesList", notesList);
+//
+//    }
+//
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//        if(savedInstanceState != null){
+//            notesList = (LinkedList<Note>) savedInstanceState.getSerializable("SavedNOtesList");
+//
+//        }
+//    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +55,9 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("COCK", "Dick");
         view = inflater.inflate(R.layout.fragment_note, container, false);
         MaterialButton addNoteButton = view.findViewById(R.id.add_note_button);
         addNoteButton.setOnClickListener(this);
-        System.out.println("ABOBA");
         return view;
     }
 
@@ -52,6 +71,17 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         ListView listView = (ListView) getActivity().findViewById(R.id.notes_scrollView);
         NotesAdapter adapter = new NotesAdapter(this.getContext(), R.layout.note_layout, notesList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
+                Note note = (Note)adapterView.getAdapter().getItem(i);
+                intent.putExtra("Title", note.GetLabel());
+                intent.putExtra("Text", note.GetText());
+                intent.putExtra("NoteObject", note);
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
     @Override
