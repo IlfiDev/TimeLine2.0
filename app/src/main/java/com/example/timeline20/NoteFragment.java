@@ -1,7 +1,9 @@
 package com.example.timeline20;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,10 @@ import android.widget.ListView;
 
 import com.example.timeline20.adapter.NotesAdapter;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -26,17 +31,10 @@ import java.util.Objects;
 public class NoteFragment extends Fragment implements View.OnClickListener {
     private LinkedList<Note> notesList = new LinkedList<Note>() {
     };
-    Bundle savedList = new Bundle();
-
-
+    SharedPreferences prefs;
     View view;
 
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putSerializable("SavedNotesList", notesList);
-//
-//    }
+
 //
 //    @Override
 //    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
@@ -50,11 +48,23 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        prefs = getContext().getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
+        if(prefs != null){
+
+            String serializedObject = prefs.getString("SavedNotesList", null);
+            if(serializedObject != null) {
+                Gson gson = new Gson();
+                Type type = new TypeToken<LinkedList<Note>>(){}.getType();
+                notesList = gson.fromJson(serializedObject, type);
+            }
+        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_note, container, false);
         MaterialButton addNoteButton = view.findViewById(R.id.add_note_button);
         addNoteButton.setOnClickListener(this);
@@ -86,10 +96,18 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+
 
         MainActivity mainActivity = (MainActivity) getActivity();
         Objects.requireNonNull(mainActivity).change_bar_icon_color(1, false);
+        prefs = getContext().getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        Type type = new TypeToken<LinkedList<Note>>(){}.getType();
+        String json = gson.toJson(notesList, type);
+        editor.putString("SavedNotesList", json);
+        editor.commit();
+        super.onDestroy();
     }
 
     @Override
@@ -125,7 +143,6 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             }
 
         }
-
         ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
 
         ListView listView = (ListView) layout.findViewById(R.id.notes_scrollView);
