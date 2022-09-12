@@ -77,7 +77,11 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         Note newNote;
         if(resultCode == 2){
             int id = (int) data.getIntExtra("note", -1);
-            notesList.remove(findNoteIndexById(id, notesList));
+            int itemIndex = findNoteIndexById(id, notesList);
+            if(itemIndex != -1){
+                notesList.remove();
+            }
+
 
         }
         else{
@@ -110,10 +114,12 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         });
     }
     private int findNoteIndexById(int id, LinkedList<Note> list){
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i).GetId() == id){
-                return i;
+        if(list.size() != 0){
+            for(int i = 0; i < list.size(); i++){
+                if(list.get(i).GetId() == id){
+                    return i;
 
+                }
             }
         }
         return -1;

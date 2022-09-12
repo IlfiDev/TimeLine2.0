@@ -33,7 +33,13 @@ public class ChangeNoteActivity extends AppCompatActivity {
     }
     public void DeleteNote(View view){
         Intent data = new Intent();
-        data.putExtra("note", noteFromOutside.GetId());
+        if(noteFromOutside == null){
+            data.putExtra("note", -1);
+        }
+        else{
+            data.putExtra("note", noteFromOutside.GetId());
+
+        }
         setResult(2,data);
         finish();
     }
