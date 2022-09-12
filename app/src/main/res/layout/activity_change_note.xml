@@ -140,6 +140,7 @@
         android:layout_height="24dp"
         android:background="@drawable/ic_delete"
         android:id="@+id/delete_button_icon"
+        android:onClick="DeleteNote"
 
         app:layout_constraintTop_toTopOf="@id/delete_button"
         app:layout_constraintBottom_toBottomOf="@id/delete_button"

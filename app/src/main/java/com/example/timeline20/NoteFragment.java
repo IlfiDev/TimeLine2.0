@@ -12,23 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.example.timeline20.adapter.NotesAdapter;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 
 public class NoteFragment extends Fragment implements View.OnClickListener {
     private LinkedList<Note> notesList = new LinkedList<Note>() {
     };
+
     View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,18 +75,21 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Note newNote;
-        if(resultCode == Activity.RESULT_FIRST_USER){
-            newNote = (Note) data.getSerializableExtra("note");
-            notesList.add(0, newNote);
+        if(resultCode == 2){
+            int id = (int) data.getIntExtra("note", -1);
+            notesList.remove(findNoteIndexById(id, notesList));
+
         }
         else{
-            newNote = (Note) data.getSerializableExtra("note");
-            for(int i = 0; i < notesList.size(); i++){
-                if(notesList.get(i).GetId() == newNote.GetId()){
-                    notesList.set(i, newNote);
-                    break;
-                }
+            if(resultCode == Activity.RESULT_FIRST_USER){
+                newNote = (Note) data.getSerializableExtra("note");
+                notesList.add(0, newNote);
             }
+            else{
+                newNote = (Note) data.getSerializableExtra("note");
+                notesList.set(findNoteIndexById(newNote.GetId(), notesList), newNote);
+            }
+
         }
 
         ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
@@ -109,5 +108,14 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(intent, 1);
             }
         });
+    }
+    private int findNoteIndexById(int id, LinkedList<Note> list){
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i).GetId() == id){
+                return i;
+
+            }
+        }
+        return -1;
     }
 }
