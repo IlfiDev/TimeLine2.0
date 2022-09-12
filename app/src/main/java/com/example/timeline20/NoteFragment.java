@@ -53,6 +53,9 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
 
         MainActivity mainActivity = (MainActivity) getActivity();
         Objects.requireNonNull(mainActivity).change_bar_icon_color(1, true);
+        ListView listView = (ListView) getActivity().findViewById(R.id.notes_scrollView);
+        NotesAdapter adapter = new NotesAdapter(this.getContext(), R.layout.note_layout, notesList);
+        listView.setAdapter(adapter);
     }
 
     @Override
@@ -71,10 +74,6 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             intent.putExtra("Title", "");
             intent.putExtra("Text", "");
             startActivityForResult(intent, 1);
-        }
-        else{
-
-                startIntent(view);
         }
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -97,11 +96,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
 
         ListView listView = (ListView) layout.findViewById(R.id.notes_scrollView);
-        int layout_top_margin = 100;
         NotesAdapter adapter = new NotesAdapter(this.getContext(), R.layout.note_layout, notesList);
-
-        ListView lv;
-
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -114,38 +109,5 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(intent, 1);
             }
         });
-//        for (int i = 0; i < notesList.size(); i++){
-//
-//            ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_note);
-//            ScrollView scView = (ScrollView) layout.findViewById(R.id.notes_scrollView);
-//            ConstraintLayout placeForNotes = (ConstraintLayout) scView.findViewById(R.id.place_for_notes);
-//
-//            View noteView = getLayoutInflater().inflate(R.layout.note_layout, placeForNotes, false);
-//
-//            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) noteView.getLayoutParams();
-//            params.topMargin = (int) layout_top_margin;
-//            params.height = (notesList.get(i).GetLineCount() * 500);
-//            noteView.setLayoutParams(params);
-//
-//            layout_top_margin += 100;
-//            TextView textView = (TextView) noteView.findViewById(R.id.note_label);
-//            textView.setText(notesList.get(i).GetLabel());
-//            placeForNotes.addView(noteView);
-//            noteView.setOnClickListener(this);
-
-//        }
-
-
-        //item.refreshDrawableState();
-
-
-    }
-    public void startIntent(View v){
-
-        Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
-        intent.putExtra("Title", notesList.get(0).GetLabel());
-        intent.putExtra("Text", notesList.get(0).GetText());
-        startActivityForResult(intent, 1);
-
     }
 }
