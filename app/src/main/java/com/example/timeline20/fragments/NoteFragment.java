@@ -1,4 +1,4 @@
-package com.example.timeline20;
+package com.example.timeline20.fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,6 +18,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.timeline20.ChangeNoteActivity;
+import com.example.timeline20.MainActivity;
+import com.example.timeline20.Note;
+import com.example.timeline20.R;
 import com.example.timeline20.adapter.NotesAdapter;
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;

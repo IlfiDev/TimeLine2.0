@@ -1,4 +1,4 @@
-package com.example.timeline20;
+package com.example.timeline20.fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.timeline20.MainActivity;
+import com.example.timeline20.R;
 
 import java.util.Objects;
 
