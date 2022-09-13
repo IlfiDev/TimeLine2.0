@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
 
-                android:id="@+id/note_button"
+                android:id="@+id/noteFragment_button"
                 android:onClick="bar_buttons"
                 />
 
@@ -72,7 +72,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
 
-                android:id="@+id/calendar_button"
+                android:id="@+id/calendarFragment_button"
                 android:onClick="bar_buttons"
                 />
 
@@ -113,7 +113,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
 
-                android:id="@+id/settings_button"
+                android:id="@+id/settingsFragment_button"
                 android:onClick="bar_buttons"
                 />
 

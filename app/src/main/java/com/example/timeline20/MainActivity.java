@@ -57,17 +57,17 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     public void bar_buttons(View view) {
         switch(view.getId()) {
-            case R.id.note_button:
+            case R.id.noteFragment_button:
                 if(what_fragment_active != 1) {
                     switch_fragment(1);
                 }
                 break;
-            case R.id.calendar_button:
+            case R.id.calendarFragment_button:
                 if(what_fragment_active != 2) {
                     switch_fragment(2);
                 }
                 break;
-            case R.id.settings_button:
+            case R.id.settingsFragment_button:
                 if (what_fragment_active != 3) {
                     switch_fragment(3);
                 }
