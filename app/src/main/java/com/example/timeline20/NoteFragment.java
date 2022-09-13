@@ -100,6 +100,12 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
 
         MainActivity mainActivity = (MainActivity) getActivity();
         Objects.requireNonNull(mainActivity).change_bar_icon_color(1, false);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onStop() {
+
         prefs = getContext().getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
@@ -107,7 +113,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         String json = gson.toJson(notesList, type);
         editor.putString("SavedNotesList", json);
         editor.commit();
-        super.onDestroy();
+        super.onStop();
     }
 
     @Override
