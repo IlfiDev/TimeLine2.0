@@ -123,8 +123,8 @@ public class SettingsFragment extends Fragment {
                         .setAutoCancel(true)
                         .setWhen(System.currentTimeMillis())
                         .setContentIntent(pendingIntent)
-                        .setContentTitle("Test")
-                        .setContentText("Test test")
+                        .setContentTitle("Z + V")
+                        .setContentText("Удаляйте приложение, оно для русских!")
                         .setPriority(NotificationCompat.PRIORITY_MAX);
         createIfN(notificationManager);
         notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
