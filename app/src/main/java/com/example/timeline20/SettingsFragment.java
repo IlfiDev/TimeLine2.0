@@ -2,14 +2,22 @@ package com.example.timeline20;
 
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -25,10 +33,11 @@ import java.util.Objects;
 
 public class SettingsFragment extends Fragment {
 
-    Button language_button;
-    Button support_button;
-    Button positive_button;
-    Button negative_button;
+    Button language_button, support_button, positive_button, negative_button;
+
+    public NotificationManager notificationManager;
+    private  static final int NOTIFY_ID = 1;
+    private static final String CHANNEL_ID = "CHANNEL_ID";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,10 +107,34 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
+                notification();
             }
-            // Уведомение ПОШЕЛ НАХУЙ
         });
+    }
 
+    private void notification() {
+        notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent intent = new Intent(getContext(), SettingsFragment.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_MUTABLE);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(getContext(), CHANNEL_ID)
+                        .setSmallIcon(R.drawable.ic_pencil)
+                        .setAutoCancel(true)
+                        .setWhen(System.currentTimeMillis())
+                        .setContentIntent(pendingIntent)
+                        .setContentTitle("Test")
+                        .setContentText("Test test")
+                        .setPriority(NotificationCompat.PRIORITY_MAX);
+        createIfN(notificationManager);
+        notificationManager.notify(NOTIFY_ID, notificationBuilder.build());
+    }
+
+    public static void createIfN(NotificationManager manager) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_HIGH);
+            manager.createNotificationChannel(notificationChannel);
+        }
     }
 
     @Override
