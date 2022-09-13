@@ -47,12 +47,14 @@ public class NotesAdapter extends BaseAdapter {
 
 
         }
-        TextView title = (TextView) newView.findViewById(R.id.note_label);
+        TextView title = (TextView) newView.findViewById(R.id.note_title);
+        TextView text = (TextView) newView.findViewById(R.id.note_text);
         //EditText edit_content = (EditText) newView.findViewById((R.id.note))
         Note newNote = (Note) getItem(i);
         if (title != null){
             title.setText(list.get(i).GetLabel());
         }
+        text.setText(list.get(i).GetText());
 
         return newView;
     }

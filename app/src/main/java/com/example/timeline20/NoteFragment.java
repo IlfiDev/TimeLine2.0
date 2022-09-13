@@ -101,7 +101,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         MainActivity mainActivity = (MainActivity) getActivity();
         Objects.requireNonNull(mainActivity).change_bar_icon_color(1, false);
         super.onDestroy();
-        
+
     }
 
     @Override
