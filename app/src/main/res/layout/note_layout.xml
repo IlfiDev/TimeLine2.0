@@ -6,10 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/note_shape"
-
     xmlns:xmals="http://schemas.android.com/apk/res-auto">
 
 
+
+    <!--Заглавие заметки-->
     <TextView
         android:id="@+id/note_title"
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
         xmals:layout_constraintEnd_toEndOf="@id/note_button"
         android:layout_marginEnd="16dp" />
 
+    <!--Содержание заметки-->
     <TextView
         android:id="@+id/note_text"
         android:layout_width="match_parent"
@@ -50,19 +52,5 @@
         android:layout_marginEnd="16dp"/>
 
 
-    <!--
-    <TextView
-        android:id="@+id/note_label"
-        android:layout_width="375dp"
-        android:layout_height="142dp"
 
-        android:background="@drawable/note_shape"
-        android:text="Text"
-        tools:ignore="MissingConstraints"
-        xmals:layout_constraintEnd_toEndOf="parent"
-        xmals:layout_constraintHorizontal_bias="0.435"
-        xmals:layout_constraintStart_toStartOf="parent"
-        xmals:layout_constraintTop_toTopOf="parent" />
-
-        -->
 </androidx.constraintlayout.widget.ConstraintLayout>

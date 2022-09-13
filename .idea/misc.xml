@@ -23,12 +23,14 @@
         <entry key="app/src/main/res/drawable/selector_note_layout.xml" value="0.149" />
         <entry key="app/src/main/res/drawable/shape_add_note_button.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/shape_content_edittext.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/shape_event.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/shape_search_button.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/shape_title_edittext.xml" value="0.1635" />
         <entry key="app/src/main/res/layout/activity_change_note.xml" value="0.40863552191654157" />
         <entry key="app/src/main/res/layout/activity_create_note.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
-        <entry key="app/src/main/res/layout/event_layout.xml" value="0.4477791116446579" />
+        <entry key="app/src/main/res/layout/dialog_language.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/event_layout.xml" value="0.5357307718009079" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.28018069638641485" />
         <entry key="app/src/main/res/layout/fragment_note.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.14114583333333333" />

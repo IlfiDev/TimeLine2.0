@@ -8,6 +8,8 @@
     tools:context=".MainActivity">
 
 
+
+    <!--Бар с основными кнопками приложения-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -19,6 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal">
 
+        <!--Кнопка заметок-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -60,8 +63,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
+        <!--Кнопка календаря-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -103,6 +105,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!--Кнопка настроек-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -149,6 +152,7 @@
 
     </LinearLayout>
 
+    <!--Место для фрагментов-->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
@@ -157,6 +161,7 @@
         android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
