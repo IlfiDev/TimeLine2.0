@@ -16,14 +16,13 @@ public class Note implements Serializable,Comparable<Note> {
     private String label;
     private String noteText;
     private LocalDateTime time;
-    private LocalDate date;
+
     private int lineCount;
 
-    public Note(String label, String noteText, LocalDate date, int lineCount){
+    public Note(String label, String noteText, LocalDateTime time, int lineCount){
         this.id = IdMaker.getId();
         this.label = label;
         this.noteText = noteText;
-        this.date = date;
         this.lineCount = lineCount;
     }
     public Note(String label, String noteText, int lineCount){
@@ -55,7 +54,7 @@ public class Note implements Serializable,Comparable<Note> {
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public int GetDateInDays(){
-        return date.getDayOfYear();
+        return time.getDayOfYear();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

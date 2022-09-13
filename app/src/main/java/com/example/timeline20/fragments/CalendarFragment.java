@@ -28,7 +28,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 
-public class CalendarFragment extends Fragment {
+public class CalendarFragment extends Fragment implements View.OnClickListener {
     LinkedList<LinkedList<Note>> datesList = new LinkedList<LinkedList<Note>>();
     View view;
     @Override
@@ -39,12 +39,14 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_note, container, false);
 
+
+
+
+        view = inflater.inflate(R.layout.fragment_calendar, container, false);
         Button addEventButton = view.findViewById(R.id.add_event_button);
-
-
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        addEventButton.setOnClickListener(this);
+        return view;
     }
 
     @Override
@@ -104,5 +106,18 @@ public class CalendarFragment extends Fragment {
             }
         }
         return -1;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.add_event_button) {
+
+            Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
+            intent.putExtra("Title", "");
+            intent.putExtra("Text", "");
+            intent.putExtra("time", LocalDateTime.now().toString());
+            startActivityForResult(intent, 1);
+        }
     }
 }

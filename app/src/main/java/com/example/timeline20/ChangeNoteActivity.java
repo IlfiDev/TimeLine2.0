@@ -19,8 +19,8 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
     EditText label;
     EditText text;
-    LocalDate date;
-    LocalDateTime time;
+
+    LocalDateTime time = null;
     Note noteFromOutside;
     Button deleteButton;
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -29,12 +29,18 @@ public class ChangeNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_note);
         label = (EditText) findViewById(R.id.note_label_field);
-        text = (EditText) findViewById(R.id.note_field);
+        text = (EditText) findViewById(R.id.note_text_field_id);
         Bundle extras = getIntent().getExtras();
         label.setText(extras.getString("Title"));
+        if(extras.getString("time") != null){
+            time = LocalDateTime.parse(extras.getString("time"));
+
+        }
+
         text.setText(extras.getString("Text"));
-        time = LocalDateTime.parse(extras.getString("time"));
-        date = LocalDate.parse(extras.getString("date"));
+
+
+
 
         noteFromOutside = (Note) extras.getSerializable("NoteObject");
         deleteButton = this.findViewById(R.id.delete_button);
@@ -56,7 +62,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
         if(noteFromOutside == null){
             int lineCount = text.getLineCount();
-            Note note = new Note(label.getText().toString(), text.getText().toString(), lineCount + 1);
+            Note note = new Note(label.getText().toString(), text.getText().toString(), time,lineCount + 1);
             Intent data = new Intent();
             data.putExtra("note",note);
             setResult(RESULT_FIRST_USER,data);
