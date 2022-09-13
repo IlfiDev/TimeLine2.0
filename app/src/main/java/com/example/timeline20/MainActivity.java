@@ -12,10 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.timeline20.fragments.CalendarFragment;
+
 import com.example.timeline20.fragments.NoteFragment;
 import com.example.timeline20.fragments.SettingsFragment;
-
+import com.example.timeline20.fragments.CalendarFragment;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {

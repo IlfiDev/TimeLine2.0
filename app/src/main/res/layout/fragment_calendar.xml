@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.CalendarFragment">
+    tools:context="fragments.CalendarFragment">
 
 
 
     <!--Заголовок-->
     <TextView
-        android:id="@+id/waste_calendar_title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/calendar"
@@ -25,7 +24,7 @@
 
     <!--Кнопка сохранения заметки-->
     <Button
-        android:id="@+id/month_button"
+        android:id="@+id/save_note"
         android:layout_width="111dp"
         android:layout_height="40dp"
         android:insetTop="0dp"
@@ -38,14 +37,14 @@
         android:fontFamily="@font/nunito_sans_bold"
         android:hapticFeedbackEnabled="true"
 
-        app:layout_constraintTop_toBottomOf="@id/waste_calendar_title_textview"
-        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="84dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="24dp"/>
 
     <!--Кнопка добавления напоминания-->
     <Button
-        android:id="@+id/add_note_button"
+        android:id="@+id/add_event_button"
         style="@style/Widget.Material3.Button"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -62,59 +61,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/event_dates_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="09.09 - 16.09"
-        android:textSize="14dp"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:textColor="@color/black"
-
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="31dp"
-        app:layout_constraintTop_toBottomOf="@id/waste_calendar_title_textview"
-        android:layout_marginTop="41dp"/>
-
-    <View
-        android:layout_width="5dp"
-        android:layout_height="9dp"
-        android:background="@drawable/ic_left_arrow"
-
-        app:layout_constraintEnd_toStartOf="@id/event_dates_textview"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintTop_toTopOf="@id/event_dates_textview"
-        app:layout_constraintBottom_toBottomOf="@id/event_dates_textview"/>
-
-    <View
-        android:layout_width="5dp"
-        android:layout_height="9dp"
-        android:background="@drawable/ic_right_arrow"
-
-        app:layout_constraintStart_toEndOf="@id/event_dates_textview"
-        android:layout_marginStart="4dp"
-        app:layout_constraintTop_toTopOf="@id/event_dates_textview"
-        app:layout_constraintBottom_toBottomOf="@id/event_dates_textview"/>
-    
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="135dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/place_for_events">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
