@@ -101,23 +101,23 @@
     <!--Кнопка сохранения заметки-->
     <Button
         android:id="@+id/save_note"
+        style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="122dp"
         android:layout_height="40dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="48dp"
         android:backgroundTint="@color/primary"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:text="@string/save"
-        android:textSize="14dp"
-        android:textColor="@color/black"
         android:fontFamily="@font/nunito_sans_bold"
         android:hapticFeedbackEnabled="true"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:onClick="SaveAndQuit"
+        android:text="@string/save"
 
-        app:layout_constraintTop_toBottomOf="@id/note_field"
-        android:layout_marginTop="24dp"
+        android:textColor="@color/black"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="48dp"/>
+        app:layout_constraintTop_toBottomOf="@id/note_field" />
 
     <!--Кнопка удаления заметки-->
     <Button

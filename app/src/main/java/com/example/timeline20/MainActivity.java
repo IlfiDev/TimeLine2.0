@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,15 +18,18 @@ import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
     private LinkedList<Note> notesList = new LinkedList<>();
 
-    //какой фрагмент акцтивен сейчас
+    //какой фрагмент активен сейчас
     private Integer what_fragment_active = -1;
 
     //фрагменты
@@ -73,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
     private void switch_fragment(Integer fragment_id) {
         if(fragment_id == 1) {
@@ -162,7 +165,4 @@ public class MainActivity extends AppCompatActivity {
 
         save_info.edit().remove("what_fragment_active").apply();
     }
-
-
-
 }
