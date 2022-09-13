@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
@@ -27,6 +28,7 @@ public class SettingsFragment extends Fragment {
     Button language_button;
     Button support_button;
     Button positive_button;
+    Button negative_button;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,15 +81,25 @@ public class SettingsFragment extends Fragment {
 
         builder.setCancelable(false);
         builder.setView(cl);
-        builder.show();
+        AlertDialog dialog = builder.show();
 
         positive_button = (Button) cl.findViewById(R.id.positive_button);
+        negative_button = (Button) cl.findViewById(R.id.netagive_button);
 
         positive_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "Вы согласились продать душу", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }
+        });
+
+        negative_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 getActivity().finish();
             }
+            // Уведомение ПОШЕЛ НАХУЙ
         });
 
     }

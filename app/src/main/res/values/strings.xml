@@ -24,7 +24,7 @@
 
 
     <string name="positive_button">Понятно</string>
-    <string name="negative_button">Обидно</string>
+    <string name="negative_button">Не согласен</string>
     <string name="dialog_title">Язык приложения</string>
     <string name="dialog_description">К сожалению, выбор языка недоступен. Приложение только для русских</string>
     
