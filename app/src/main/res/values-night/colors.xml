@@ -6,16 +6,29 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
-    <color name="black">#FF018786</color>
-    <color name="white">#FF018786</color>
-    <color name="primary">#FF018786</color>
-    <color name="secondary">#FF018786</color>
-    <color name="secondary_container">#FF018786</color>
-    <color name="dialog_container">#FF018786</color>
+
+
+    <color name="primary">#FEDD2C</color>
+    <color name="secondary">#0077FF</color>
+    <color name="secondary_container">#B7D8FF</color>
+    <color name="black">#1C1C1C</color>
+    <color name="white">#000000</color>
+
+    <color name="onButton">#1C1C1C</color>
+    <color name="appBar">#FFFFFFFF</color>
+    <color name="noteTitle">#FFFFFFFF</color>
+    <color name="noteText">#CACACA</color>
+    <color name="Text">#FFFFFFFF</color>
+
+    <color name="noteHint">#999999</color>
+
     <color name="primary_text">#1C1C1C</color>
     <color name="secondary_text">#595959</color>
+
+    <color name="button">#1F1F1F</color>
+    <color name="dialog_container">#FEDD2C</color>
+
     <color name="bar_text">#B9B9B9</color>
     <color name="gray_175">#F4F4F4</color>
-    <color name="gray_900">#797979</color>
-
+    <color name="gray_900">#CACACA</color>
 </resources>

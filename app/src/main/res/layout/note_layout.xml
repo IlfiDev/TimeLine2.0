@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
 
         android:text="Hello"
-        android:textColor="@color/black"
+        android:textColor="@color/noteTitle"
         android:textSize="18dp"
         android:fontFamily="@font/nunito_sans_bold"
         android:maxHeight="24dp"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
 
         android:text="Hello"
-        android:textColor="@color/black"
+        android:textColor="@color/noteText"
         android:textSize="14dp"
         android:fontFamily="@font/nunito_sans_regular"
         android:maxHeight="126dp"

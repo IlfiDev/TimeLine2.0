@@ -80,10 +80,6 @@ public class SettingsFragment extends Fragment {
 
         theme_switch.setChecked(save_switch.getBoolean("Dick", false));
 
-        if (theme_switch.isChecked()){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);} else
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         theme_switch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
