@@ -39,8 +39,8 @@ public class ChangeNoteActivity extends AppCompatActivity {
     private Button date_button, time_button;
 
     private final SimpleDateFormat date_format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-    private final SimpleDateFormat time_format = new SimpleDateFormat("kk:mm", Locale.US);
-    private final  SimpleDateFormat finale_date_format = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:'00.000'", Locale.US);
+    private final SimpleDateFormat time_format = new SimpleDateFormat("HH:mm", Locale.US);
+    private final  SimpleDateFormat finale_date_format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:'00.000'", Locale.US);
 
     Calendar calendar = Calendar.getInstance();
 
@@ -71,7 +71,6 @@ public class ChangeNoteActivity extends AppCompatActivity {
         time_button.setText(time_format.format(calendar.getTime()));
 
         finale_time_str.append(finale_date_format.format(calendar.getTime()));
-        System.out.println(finale_time_str);
     }
 
     public void DeleteNote(View view){
@@ -138,7 +137,6 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
                         finale_time_str.delete(0, finale_time_str.length());
                         finale_time_str.append(finale_date_format.format(calendar.getTime()));
-                        System.out.println(finale_time_str);
                     }
                 });
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
@@ -161,7 +159,6 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
                         finale_time_str.delete(0, finale_time_str.length());
                         finale_time_str.append(finale_date_format.format(calendar.getTime()));
-                        System.out.println(finale_time_str);
                     }
                 }, time_calendar.get(Calendar.HOUR_OF_DAY), time_calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();
