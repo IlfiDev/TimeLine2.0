@@ -7,11 +7,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
@@ -20,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.timeline20.MainActivity;
@@ -32,6 +35,9 @@ import java.util.Objects;
 public class SettingsFragment extends Fragment {
 
     Button language_button, support_button, positive_button, negative_button;
+    Switch theme_switch;
+
+    private SharedPreferences save_switch;
 
     public NotificationManager notificationManager;
     private  static final int NOTIFY_ID = 1;
@@ -40,6 +46,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        save_switch = getActivity().getSharedPreferences("save_switch", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -50,6 +58,7 @@ public class SettingsFragment extends Fragment {
 
         support_button = (Button) inflatedView.findViewById(R.id.support_us_button);
         language_button = (Button) inflatedView.findViewById(R.id.language_button);
+        theme_switch = (Switch) inflatedView.findViewById(R.id.theme_switch);
 
         support_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +78,24 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        theme_switch.setChecked(save_switch.getBoolean("Dick", false));
+
+        if (theme_switch.isChecked()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);} else
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        theme_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (theme_switch.isChecked()){
+
+                    Toast.makeText(getContext(), "Вкл", Toast.LENGTH_LONG).show();
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+                } else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        });
+
         return inflatedView;
     }
 
@@ -79,6 +106,7 @@ public class SettingsFragment extends Fragment {
         MainActivity mainActivity = (MainActivity) getActivity();
         Objects.requireNonNull(mainActivity).change_bar_icon_color(3, true);
     }
+
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void language_dialog() {
@@ -106,6 +134,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().finish();
                 notification();
+                // Добавить скрытый активити типа вирус
             }
         });
     }
@@ -133,6 +162,14 @@ public class SettingsFragment extends Fragment {
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_HIGH);
             manager.createNotificationChannel(notificationChannel);
         }
+    }
+
+    @Override
+    public void onPause() {
+
+        save_switch.edit().putBoolean("Dick", theme_switch.isChecked()).apply();
+
+        super.onPause();
     }
 
     @Override
