@@ -7,8 +7,6 @@ import androidx.annotation.RequiresApi;
 import com.example.timeline20.Additional.IdMaker;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Note implements Serializable,Comparable<Note> {
@@ -24,6 +22,7 @@ public class Note implements Serializable,Comparable<Note> {
         this.label = label;
         this.noteText = noteText;
         this.lineCount = lineCount;
+        this.time = time;
     }
     public Note(String label, String noteText, int lineCount){
         this.id = IdMaker.getId();
@@ -54,7 +53,8 @@ public class Note implements Serializable,Comparable<Note> {
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public int GetDateInDays(){
-        return time.getDayOfYear();
+        int a = time.getDayOfYear();
+        return a;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

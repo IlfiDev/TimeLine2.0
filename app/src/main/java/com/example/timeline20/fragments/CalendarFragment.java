@@ -21,6 +21,7 @@ import com.example.timeline20.Note;
 import com.example.timeline20.R;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.LineNumberInputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -77,23 +78,29 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         }
         else{
             newNote = (Note) data.getSerializableExtra("note");
-
-            if(datesList.get(newNote.GetDateInDays()) == null){
+            LinkedList<Note> tempList = findListByDate(newNote.GetDateInDays(), datesList);
+            if(tempList == null){
                 notesList = new LinkedList<Note>();
-            }
-            else{
-                notesList = datesList.get(newNote.GetDateInDays());
-            }
-            if(resultCode == Activity.RESULT_FIRST_USER){
-
                 notesList.add(0, newNote);
-                Collections.sort(notesList);
-                datesList.set(newNote.GetDateInDays(), notesList);
+                datesList.add(0, notesList);
+                sortDatesList(datesList);
             }
             else{
-                notesList = datesList.get(newNote.GetDateInDays());
-                notesList.set(findNoteIndexById(newNote.GetId(), notesList), newNote);
+                notesList = tempList;
+                if(resultCode == Activity.RESULT_FIRST_USER){
+
+                    notesList.add(0, newNote);
+                    Collections.sort(notesList);
+
+                }
+                else{
+                    notesList = datesList.get(newNote.GetDateInDays());
+                    notesList.set(findNoteIndexById(newNote.GetId(), notesList), newNote);
+                }
             }
+
+
+
         }
     }
     private int findNoteIndexById(int id, LinkedList<Note> list){
@@ -119,5 +126,35 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
             intent.putExtra("time", LocalDateTime.now().toString());
             startActivityForResult(intent, 1);
         }
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void CreateEvent(View view){
+        Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
+        intent.putExtra("Title", "");
+        intent.putExtra("Text", "");
+        intent.putExtra("time", LocalDateTime.now().toString());
+        startActivityForResult(intent, 1);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void sortDatesList(LinkedList<LinkedList<Note>> datesList){
+        for(int i = 0; i < datesList.size() - 1; i++){
+            if (datesList.get(i).get(0).GetDateInDays() > datesList.get(i + 1).get(0).GetDateInDays()){
+                LinkedList<Note> tempList = datesList.get(i);
+                datesList.remove(i);
+                datesList.add(i+1, tempList);
+            }
+            else{
+                return;
+            }
+        }
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private LinkedList<Note> findListByDate(int dateInDays, LinkedList<LinkedList<Note>> datesList) {
+        for (int i = 0; i < datesList.size() - 1; i++) {
+            if (datesList.get(i).getFirst().GetDateInDays() == dateInDays) {
+                return datesList.get(i);
+            }
+        }
+        return null;
     }
 }
