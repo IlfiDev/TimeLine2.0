@@ -17,6 +17,8 @@
     <string name="sort_by_date">По дате</string>
     <string name="change_note">Изменение заметки</string>
     <string name="create_note">Создание заметки</string>
+    <string name="create_event">Создание задачи</string>
+    <string name="change_event">Изменение задачи</string>
     <string name="title">Заголовок</string>
     <string name="text">Текст</string>
     <string name="description">Описание</string>

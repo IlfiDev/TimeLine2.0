@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/notes"
                 android:textSize="16dp"
-                android:fontFamily="@font/nunito_sans_bold"
+                android:fontFamily="@font/nunito_sans_extrabold"
                 android:textColor="@color/bar_text"
                 android:id="@+id/note_textview"
 
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/calendar"
                 android:textSize="16sp"
-                android:fontFamily="@font/nunito_sans_bold"
+                android:fontFamily="@font/nunito_sans_extrabold"
                 android:textColor="@color/bar_text"
                 android:id="@+id/calendar_textview"
 
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/settings"
                 android:textSize="16sp"
-                android:fontFamily="@font/nunito_sans_bold"
+                android:fontFamily="@font/nunito_sans_extrabold"
                 android:textColor="@color/bar_text"
                 android:id="@+id/settings_textview"
 

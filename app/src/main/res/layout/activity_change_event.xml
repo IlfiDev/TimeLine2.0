@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!--Заголовок и кнопка назад-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/waste_change_note_title">
+
+        <Button
+            android:id="@+id/back_button"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:backgroundTint="@color/white"
+            android:hapticFeedbackEnabled="true"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="0dp"
+            android:onClick="SaveAndQuit"
+
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"/>
+
+        <View
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/ic_back_arrow"
+
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_event"
+            android:textColor="@color/black"
+            android:textSize="28dp"
+            android:fontFamily="@font/nunito_sans_bold"
+
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="14dp"
+            app:layout_constraintStart_toEndOf="@id/back_button"
+            android:layout_marginStart="24dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Кнопка задания даты активити-->
+    <Button
+        android:id="@+id/set_date_event_button"
+        android:layout_width="153dp"
+        android:layout_height="40dp"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="changeDateTime"
+
+        style="@style/Widget.Material3.Button.Icon"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="100dp"
+        android:backgroundTint="@color/secondary"
+
+        android:text="09/09/2022"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nunito_sans_extrabold"
+
+        app:icon="@drawable/ic_change_date_arrow"
+        app:iconGravity="textEnd"
+        app:iconTint="@color/white"
+
+        app:layout_constraintTop_toBottomOf="@id/waste_change_note_title"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"/>
+
+    <!--Кнопка задания времени активити-->
+    <Button
+        android:id="@+id/set_time_event_button"
+        android:layout_width="68dp"
+        android:layout_height="40dp"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="changeDateTime"
+
+        style="@style/Widget.Material3.Button.TextButton"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="100dp"
+        android:backgroundTint="@color/secondary"
+
+        android:text="09:30"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nunito_sans_extrabold"
+
+        app:layout_constraintTop_toBottomOf="@id/waste_change_note_title"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toEndOf="@id/set_date_event_button"
+        android:layout_marginStart="12dp"/>
+
+    <!--Место для ввода заголовка заметки-->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_title_edittext"
+        android:id="@+id/note_label_field"
+        android:hint="@string/title"
+        android:gravity="center_vertical"
+        android:includeFontPadding="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+        app:layout_constraintTop_toBottomOf="@id/set_date_event_button"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"/>
+
+    <!--Место для ввода содержания заметки-->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:background="@drawable/shape_content_edittext"
+        android:id="@+id/note_text_field_id"
+        android:hint="@string/text"
+        android:gravity="top"
+        android:includeFontPadding="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+
+        app:layout_constraintTop_toBottomOf="@id/note_label_field"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"/>
+
+    <!--Кнопка сохранения заметки-->
+    <Button
+        android:id="@+id/save_note"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="122dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="48dp"
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:hapticFeedbackEnabled="true"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:onClick="SaveAndQuit"
+        android:text="@string/save"
+
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/note_text_field_id" />
+
+    <!--Кнопка удаления заметки-->
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:backgroundTint="@color/gray_175"
+        android:id="@+id/delete_button"
+        android:hapticFeedbackEnabled="true"
+
+        app:layout_constraintEnd_toStartOf="@id/save_note"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/note_text_field_id"
+        android:layout_marginTop="24dp"/>
+
+    <!--Кнопка удаления заметки-->
+    <View
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_delete"
+        android:id="@+id/delete_button_icon"
+        android:onClick="DeleteNote"
+
+        app:layout_constraintTop_toTopOf="@id/delete_button"
+        app:layout_constraintBottom_toBottomOf="@id/delete_button"
+        app:layout_constraintStart_toStartOf="@id/delete_button"
+        app:layout_constraintEnd_toEndOf="@id/delete_button" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
