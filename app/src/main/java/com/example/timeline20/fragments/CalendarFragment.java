@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.text.format.Time;
@@ -14,11 +15,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
+import android.widget.ListView;
+import android.widget.ScrollView;
 
 import com.example.timeline20.ChangeNoteActivity;
 import com.example.timeline20.MainActivity;
 import com.example.timeline20.Note;
 import com.example.timeline20.R;
+import com.example.timeline20.adapter.EventAdapter;
+import com.example.timeline20.adapter.NotesAdapter;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.LineNumberInputStream;
@@ -101,6 +107,16 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
 
 
 
+        }
+        ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_calendar);
+        HorizontalScrollView scrollView = (HorizontalScrollView) layout.findViewById(R.id.events_scrollview);
+        ConstraintLayout innerLayout = (ConstraintLayout) scrollView.findViewById(R.id.place_for_events);
+        for(int i = 0; i < datesList.size(); i++){
+            ListView listView = (ListView) getLayoutInflater().inflate(R.layout.inflateable_listview, null);
+
+            EventAdapter adapter = new EventAdapter(this.getContext(), R.layout.event_layout, datesList.get(i));
+            listView.setAdapter(adapter);
+            innerLayout.addView(listView);
         }
     }
     private int findNoteIndexById(int id, LinkedList<Note> list){

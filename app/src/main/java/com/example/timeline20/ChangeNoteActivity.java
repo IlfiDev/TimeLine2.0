@@ -137,6 +137,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
                         finale_time_str.delete(0, finale_time_str.length());
                         finale_time_str.append(finale_date_format.format(calendar.getTime()));
+                        time = LocalDateTime.parse(finale_time_str);
                     }
                 });
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
@@ -146,6 +147,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
                 Calendar time_calendar = Calendar.getInstance();
                 TimePickerDialog timePickerDialog = new TimePickerDialog(ChangeNoteActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
@@ -159,6 +161,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
                         finale_time_str.delete(0, finale_time_str.length());
                         finale_time_str.append(finale_date_format.format(calendar.getTime()));
+                        time = LocalDateTime.parse(finale_time_str);
                     }
                 }, time_calendar.get(Calendar.HOUR_OF_DAY), time_calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();
