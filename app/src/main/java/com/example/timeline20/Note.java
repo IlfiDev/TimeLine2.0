@@ -14,7 +14,7 @@ public class Note implements Serializable,Comparable<Note> {
     private int id;
     private String label;
     private String noteText;
-    private LocalDateTime time;
+    public LocalDateTime time;
     private String timeStr;
     private int lineCount;
 
@@ -80,42 +80,7 @@ public class Note implements Serializable,Comparable<Note> {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String GetDateTime(){
 
-        int day = time.getDayOfMonth();
-        String daystr;
-        if(day / 10 <= 0){
-            daystr = "0" + String.valueOf(day);
-        }
-        else{
-            daystr = String.valueOf(day);
-        }
-        int month = time.getMonthValue();
-        String monthstr;
-        if(month / 10 <= 0){
-            monthstr = "0" + String.valueOf(month);
-        }
-        else{
-            monthstr = String.valueOf(month);
-        }
-        int year = time.getYear();
-        int hours = time.getHour();
-
-        String hourstr;
-        if(hours / 10 <= 0){
-            hourstr = "0" + String.valueOf(hours);
-        }
-        else{
-            hourstr = String.valueOf(hours);
-        }
-
-        int minutes = time.getMinute();
-        String minutesstr;
-        if(minutes / 10 <= 0){
-            minutesstr = "0" + String.valueOf(minutes);
-        }
-        else{
-            minutesstr = String.valueOf(minutes);
-        }
-        return String.valueOf(year) + "-"+monthstr+"-" + daystr+ "T" + hourstr + ":" + minutesstr;
+        return timeStr;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String GetTime(){

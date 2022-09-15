@@ -81,7 +81,10 @@ public class ChangeNoteActivity extends AppCompatActivity {
         }
         else{
             data.putExtra("note", noteFromOutside.GetId());
-            data.putExtra("noteDate", noteFromOutside.GetDateInDays());
+            if(noteFromOutside.time != null){
+                data.putExtra("noteDate", noteFromOutside.GetDateInDays());
+            }
+
         }
         setResult(2,data);
         finish();
