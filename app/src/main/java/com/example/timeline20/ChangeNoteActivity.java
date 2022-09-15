@@ -73,6 +73,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
         finale_time_str.append(finale_date_format.format(calendar.getTime()));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void DeleteNote(View view){
         Intent data = new Intent();
         if(noteFromOutside == null){
@@ -80,7 +81,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
         }
         else{
             data.putExtra("note", noteFromOutside.GetId());
-
+            data.putExtra("noteDate", noteFromOutside.GetDateInDays());
         }
         setResult(2,data);
         finish();
