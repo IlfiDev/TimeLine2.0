@@ -147,7 +147,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
             case R.id.set_time_event_button:
 
                 Calendar time_calendar = Calendar.getInstance();
-                TimePickerDialog timePickerDialog = new TimePickerDialog(ChangeNoteActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ChangeNoteActivity.this, android.R.style.Theme_DeviceDefault_Dialog, new TimePickerDialog.OnTimeSetListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {

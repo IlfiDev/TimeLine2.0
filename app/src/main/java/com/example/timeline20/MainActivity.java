@@ -2,12 +2,14 @@ package com.example.timeline20;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private final CalendarFragment calendarFragment = new CalendarFragment();
     private final SettingsFragment settingsFragment = new SettingsFragment();
 
+    private int theme;
+    int active_color;
+
     private SharedPreferences save_info;
 
     @Override
@@ -38,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); ЛОМАЕТ ТЕМНУЮ ТЕМУ
 
         save_info = getSharedPreferences("save_info", MODE_PRIVATE);
 
@@ -46,9 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (save_switch.getBoolean("Dick", false)){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            setTheme(R.style.Dark);
+            theme = AppCompatDelegate.MODE_NIGHT_YES;
         } else{
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            theme = AppCompatDelegate.MODE_NIGHT_NO;
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
@@ -117,16 +124,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void change_bar_icon_color(int num_icon, boolean active) {
+
         View temp_view;
         TextView textView;
-        int active_color = ContextCompat.getColor(getApplicationContext(), R.color.secondary);
+
+        if (theme == AppCompatDelegate.MODE_NIGHT_NO){
+            active_color = ContextCompat.getColor(getApplicationContext(), R.color.secondary);} else
+                active_color = ContextCompat.getColor(getApplicationContext(), R.color.primary);
+
         int inactive_color = ContextCompat.getColor(getApplicationContext(), R.color.bar_text);
+
+        Drawable active_icon;
+
         switch (num_icon) {
             case 1:
                 temp_view = findViewById(R.id.note_icon);
                 textView = findViewById(R.id.note_textview);
-                if(active) {
+                if (active && theme == AppCompatDelegate.MODE_NIGHT_NO) {
                     temp_view.setBackgroundResource(R.drawable.ic_active_note);
+                    textView.setTextColor(active_color);
+                } else if (active && theme == AppCompatDelegate.MODE_NIGHT_YES){
+                    active_icon = AppCompatResources.getDrawable(MainActivity.this, R.drawable.ic_note);
+                    DrawableCompat.setTint(active_icon, ContextCompat.getColor(MainActivity.this, R.color.primary));
+
+                    temp_view.setBackground(active_icon);
                     textView.setTextColor(active_color);
                 } else {
                     temp_view.setBackgroundResource(R.drawable.ic_note);
@@ -136,8 +157,14 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 temp_view = findViewById(R.id.note_calendar);
                 textView = findViewById(R.id.calendar_textview);
-                if(active) {
+                if (active && theme == AppCompatDelegate.MODE_NIGHT_NO) {
                     temp_view.setBackgroundResource(R.drawable.ic_active_calendar);
+                    textView.setTextColor(active_color);
+                } else if (active && theme == AppCompatDelegate.MODE_NIGHT_YES){
+                    active_icon = AppCompatResources.getDrawable(MainActivity.this, R.drawable.ic_calendar);
+                    DrawableCompat.setTint(active_icon, ContextCompat.getColor(MainActivity.this, R.color.primary));
+
+                    temp_view.setBackground(active_icon);
                     textView.setTextColor(active_color);
                 } else {
                     temp_view.setBackgroundResource(R.drawable.ic_calendar);
@@ -147,8 +174,14 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 temp_view = findViewById(R.id.note_settings);
                 textView = findViewById(R.id.settings_textview);
-                if(active) {
+                if (active && theme == AppCompatDelegate.MODE_NIGHT_NO) {
                     temp_view.setBackgroundResource(R.drawable.ic_active_settings);
+                    textView.setTextColor(active_color);
+                } else if (active && theme == AppCompatDelegate.MODE_NIGHT_YES){
+                    active_icon = AppCompatResources.getDrawable(MainActivity.this, R.drawable.ic_settings);
+                    DrawableCompat.setTint(active_icon, ContextCompat.getColor(MainActivity.this, R.color.primary));
+
+                    temp_view.setBackground(active_icon);
                     textView.setTextColor(active_color);
                 } else {
                     temp_view.setBackgroundResource(R.drawable.ic_settings);

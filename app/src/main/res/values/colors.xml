@@ -15,6 +15,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="onButton">#1C1C1C</color>
+    <color name="onSecButton">#FFFFFFFF</color>
     <color name="appBar">#1C1C1C</color>
     <color name="noteTitle">#1C1C1C</color>
     <color name="noteText">#595959</color>
