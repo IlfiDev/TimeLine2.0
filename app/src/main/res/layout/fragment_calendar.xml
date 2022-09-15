@@ -27,14 +27,13 @@
     <!--Кнопка выбора месяца-->
     <Button
         android:id="@+id/save_note"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="111dp"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="124dp"
         android:layout_height="40dp"
         android:layout_marginTop="84dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/primary"
         android:fontFamily="@font/nunito_sans_bold"
-        android:hapticFeedbackEnabled="true"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/save"
@@ -43,25 +42,6 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--Кнопка добавления напоминания-->
-    <Button
-        android:id="@+id/add_event_button"
-        style="@style/Widget.Material3.Button"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/primary"
-        android:onClick="CreateEvent"
-        android:hapticFeedbackEnabled="true"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        app:cornerRadius="16dp"
-        app:icon="@drawable/ic_plus"
-        app:iconTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <!--Промежуток времени в месяце, в котором есть
     какие-либо события-->
@@ -103,7 +83,7 @@
     <!--Место для размещения событий-->
     <HorizontalScrollView
         android:layout_width="357dp"
-        android:layout_height="493dp"
+        android:layout_height="match_parent"
         android:id="@+id/events_scrollview"
         android:layout_marginStart="24dp"
         android:layout_marginTop="135dp"
@@ -120,6 +100,24 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </HorizontalScrollView>
+
+    <!--Кнопка добавления напоминания-->
+    <Button
+        android:id="@+id/add_event_button"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/primary"
+
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="16dp"
+        app:icon="@drawable/ic_pencil"
+        app:iconTint="@color/onButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

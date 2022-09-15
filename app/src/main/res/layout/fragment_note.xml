@@ -82,7 +82,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sort_by_date_button"
-        tools:ignore="MissingConstraints"></ListView>
+        tools:ignore="MissingConstraints">
+
+    </ListView>
 
     <!--Кнопка добавления заметки-->
     <Button

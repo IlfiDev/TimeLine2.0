@@ -26,15 +26,15 @@
         <entry key="app/src/main/res/drawable/shape_event.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/shape_search_button.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/shape_title_edittext.xml" value="0.1635" />
+        <entry key="app/src/main/res/layout/activity_change_event.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_change_note.xml" value="0.40863552191654157" />
         <entry key="app/src/main/res/layout/activity_create_note.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/dialog_language.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/event_layout.xml" value="0.75" />
-        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.28018069638641485" />
+        <entry key="app/src/main/res/layout/event_layout.xml" value="0.5357307718009079" />
+        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.2252109087887586" />
         <entry key="app/src/main/res/layout/fragment_note.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.14114583333333333" />
-        <entry key="app/src/main/res/layout/inflateable_listview.xml" value="0.25" />
         <entry key="app/src/main/res/layout/note_layout.xml" value="0.25" />
       </map>
     </option>
