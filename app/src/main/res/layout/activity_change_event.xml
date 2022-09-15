@@ -150,14 +150,13 @@
     <!--Кнопка сохранения заметки-->
     <Button
         android:id="@+id/save_note"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="122dp"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="124dp"
         android:layout_height="40dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
         android:backgroundTint="@color/primary"
         android:fontFamily="@font/nunito_sans_bold"
-        android:hapticFeedbackEnabled="true"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:onClick="SaveAndQuit"
@@ -174,10 +173,10 @@
         android:layout_height="40dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        style="@style/Widget.Material3.Button.TextButton"
+        style="@style/Widget.Material3.Button"
         android:backgroundTint="@color/gray_175"
         android:id="@+id/delete_button"
-        android:hapticFeedbackEnabled="true"
+        android:onClick="DeleteNote"
 
         app:layout_constraintEnd_toStartOf="@id/save_note"
         android:layout_marginEnd="16dp"
@@ -190,7 +189,6 @@
         android:layout_height="24dp"
         android:background="@drawable/ic_delete"
         android:id="@+id/delete_button_icon"
-        android:onClick="DeleteNote"
 
         app:layout_constraintTop_toTopOf="@id/delete_button"
         app:layout_constraintBottom_toBottomOf="@id/delete_button"
