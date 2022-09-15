@@ -14,19 +14,16 @@ public class Note implements Serializable,Comparable<Note> {
     private int id;
     private String label;
     private String noteText;
-    public LocalDateTime time;
-    private String timeStr;
+    public String timeStr;
     private int lineCount;
 
-    public Note(String label, String noteText, LocalDateTime time, int lineCount){
+    public Note(String label, String noteText, String time, int lineCount){
         this.id = IdMaker.getId();
         this.label = label;
         this.noteText = noteText;
         this.lineCount = lineCount;
-        this.time = time;
-        if(this.time != null){
-            this.timeStr = time.toString();
-        }
+        this.timeStr = time;
+
     }
     public Note(String label, String noteText, int lineCount){
         this.id = IdMaker.getId();
@@ -53,12 +50,13 @@ public class Note implements Serializable,Comparable<Note> {
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public int GetTimeInMinutes(){
-        time = LocalDateTime.parse(timeStr);
+
+        LocalDateTime time = LocalDateTime.parse(timeStr);
         return time.getMinute() + time.getHour() * 60;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public int GetDateInDays(){
-        time = LocalDateTime.parse(timeStr);
+        LocalDateTime time = LocalDateTime.parse(timeStr);
         int a = time.getDayOfYear();
         return a;
     }
@@ -85,29 +83,10 @@ public class Note implements Serializable,Comparable<Note> {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String GetTime(){
 
-//        time = LocalDateTime.parse(timeStr);
-//        int hours = time.getHour();
-//        String hourstr;
-//        if(hours / 10 <= 0){
-//            hourstr = "0" + String.valueOf(hours);
-//        }
-//        else{
-//            hourstr = String.valueOf(hours);
-//        }
-//
-//        int minutes = time.getMinute();
-//        String minutesstr;
-//        if(minutes / 10 <= 0){
-//            minutesstr = "0" + String.valueOf(minutes);
-//        }
-//        else{
-//            minutesstr = String.valueOf(minutes);
-//        }
-//        return hourstr + ":" + minutesstr;
         return timeStr.split("T")[1].split(":")[0] + ":" + timeStr.split("T")[1].split(":")[1];
     }
-    public void SetTime(LocalDateTime time){
-        this.time = time;
+    public void SetTime(String time){
+        this.timeStr = time;
 //        this.timeStr = this.time.toString();
     }
     public void SetStrTime(){

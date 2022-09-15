@@ -81,7 +81,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
         }
         else{
             data.putExtra("note", noteFromOutside.GetId());
-            if(noteFromOutside.time != null){
+            if(noteFromOutside.timeStr != null){
                 data.putExtra("noteDate", noteFromOutside.GetDateInDays());
             }
 
@@ -93,7 +93,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
         if(noteFromOutside == null){
             int lineCount = text.getLineCount();
-            Note note = new Note(label.getText().toString(), text.getText().toString(), time,lineCount + 1);
+            Note note = new Note(label.getText().toString(), text.getText().toString(), time.toString(),lineCount + 1);
             Intent data = new Intent();
             data.putExtra("note",note);
             setResult(RESULT_FIRST_USER,data);
@@ -102,7 +102,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
             Intent data = new Intent();
             noteFromOutside.SetNoteText(text.getText().toString());
             noteFromOutside.SetLabel(label.getText().toString());
-            noteFromOutside.SetTime(time);
+            noteFromOutside.SetTime(time.toString());
             data.putExtra("note", noteFromOutside);
             setResult(RESULT_OK, data);
         }
