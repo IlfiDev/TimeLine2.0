@@ -122,6 +122,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
 
+        android:textColor="@color/noteTitle"
         app:layout_constraintTop_toBottomOf="@id/set_date_event_button"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,6 +138,8 @@
         android:id="@+id/note_text_field_id"
         android:hint="@string/text"
         android:textColorHint="@color/noteHint"
+        android:textColor="@color/noteText"
+
         android:gravity="top"
         android:includeFontPadding="true"
         android:paddingStart="16dp"
