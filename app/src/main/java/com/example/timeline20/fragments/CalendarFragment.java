@@ -171,7 +171,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     private LinkedList<Note> findListByDate(int dateInDays, LinkedList<LinkedList<Note>> datesList) {
-        for (int i = 0; i < datesList.size() - 1; i++) {
+        for (int i = 0; i < datesList.size(); i++) {
             if (datesList.get(i).getFirst().GetDateInDays() == dateInDays) {
                 return datesList.get(i);
             }
