@@ -14,6 +14,7 @@ import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ListView;
@@ -100,7 +101,6 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
 
                 }
                 else{
-                    notesList = datesList.get(newNote.GetDateInDays());
                     notesList.set(findNoteIndexById(newNote.GetId(), notesList), newNote);
                 }
             }
@@ -111,6 +111,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_calendar);
         HorizontalScrollView scrollView = (HorizontalScrollView) layout.findViewById(R.id.events_scrollview);
         ConstraintLayout innerLayout = (ConstraintLayout) scrollView.findViewById(R.id.place_for_events);
+        innerLayout.removeAllViewsInLayout();
         for(int i = 0; i < datesList.size(); i++){
             ListView listView = (ListView) getLayoutInflater().inflate(R.layout.inflateable_listview, null);
             ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT);
@@ -120,7 +121,18 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
             listView.setLayoutParams(params);
             EventAdapter adapter = new EventAdapter(this.getContext(), R.layout.event_layout, datesList.get(i));
             listView.setAdapter(adapter);
-
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
+                    Note note = (Note)adapterView.getAdapter().getItem(i);
+                    intent.putExtra("Title", note.GetLabel());
+                    intent.putExtra("Text", note.GetText());
+                    intent.putExtra("time", note.GetTime());
+                    intent.putExtra("NoteObject", note);
+                    startActivityForResult(intent, 1);
+                }
+            });
             innerLayout.addView(listView);
         }
     }

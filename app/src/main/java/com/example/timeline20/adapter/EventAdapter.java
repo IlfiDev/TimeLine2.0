@@ -59,7 +59,7 @@ public class EventAdapter extends BaseAdapter {
         //EditText edit_content = (EditText) newView.findViewById((R.id.note))
         Note newNote = (Note) getItem(i);
 
-        text.setText(list.get(i).GetText());
+        text.setText(list.get(i).GetLabel());
         time.setText(list.get(i).GetTime());
         return newView;
     }

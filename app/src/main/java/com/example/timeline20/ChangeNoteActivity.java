@@ -98,6 +98,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
             Intent data = new Intent();
             noteFromOutside.SetNoteText(text.getText().toString());
             noteFromOutside.SetLabel(label.getText().toString());
+            noteFromOutside.SetTime(time);
             data.putExtra("note", noteFromOutside);
             setResult(RESULT_OK, data);
         }

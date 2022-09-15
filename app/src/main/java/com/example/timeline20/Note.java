@@ -53,7 +53,6 @@ public class Note implements Serializable,Comparable<Note> {
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public int GetDateInDays(){
-
         int a = time.getDayOfYear();
         return a;
     }
@@ -74,8 +73,14 @@ public class Note implements Serializable,Comparable<Note> {
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String GetTime(){
+        int day = time.getDayOfMonth();
+        int month = time.getMonthValue();
+        int year = time.getYear();
         int hours = time.getHour();
         int minutes = time.getMinute();
         return String.valueOf(hours) + ":" + String.valueOf(minutes);
+    }
+    public void SetTime(LocalDateTime time){
+        this.time = time;
     }
 }
