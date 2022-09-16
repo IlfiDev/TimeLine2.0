@@ -148,6 +148,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
                     }
                     else{
                         notesList.set(itemIndex, newNote);
+                        Collections.sort(notesList);
                     }
 
                 }

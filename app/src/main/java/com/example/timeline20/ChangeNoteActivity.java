@@ -89,6 +89,7 @@ public class ChangeNoteActivity extends AppCompatActivity {
         setResult(2,data);
         finish();
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void SaveAndQuit(View view) {
 
         if(noteFromOutside == null){
@@ -100,15 +101,29 @@ public class ChangeNoteActivity extends AppCompatActivity {
         }
         else{
             Intent data = new Intent();
-            noteFromOutside.SetNoteText(text.getText().toString());
-            noteFromOutside.SetLabel(label.getText().toString());
-            noteFromOutside.SetTime(time.toString());
-            data.putExtra("note", noteFromOutside);
+            int currDate = -1;
+            if(noteFromOutside.timeStr == null) {
+                noteFromOutside.SetNoteText(text.getText().toString());
+                noteFromOutside.SetLabel(label.getText().toString());
+
+                data.putExtra("note", noteFromOutside);
+            }else{
+                noteFromOutside.SetNoteText(text.getText().toString());
+                noteFromOutside.SetLabel(label.getText().toString());
+                noteFromOutside.SetTime(time.toString());
+                data.putExtra("note", noteFromOutside);
+
+                data.putExtra("date", currDate);
+            }
+
+
+
             setResult(RESULT_OK, data);
         }
 
         finish();
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
