@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.example.timeline20.ChangeNoteActivity;
 import com.example.timeline20.MainActivity;
@@ -175,7 +176,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         for(int i = 0; i < datesList.size(); i++){
             ListView listView = (ListView) getLayoutInflater().inflate(R.layout.inflateable_listview, null);
             ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT);
-            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.topMargin = 75;
             params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
             params.leftMargin = 300 * i;
             listView.setLayoutParams(params);
@@ -195,6 +196,15 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
                 }
             });
             innerLayout.addView(listView);
+            ConstraintLayout topDateLayout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.top_date_layout, null);
+            ConstraintLayout.LayoutParams otherParams = new ConstraintLayout.LayoutParams(200, 50);
+            otherParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            otherParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+            otherParams.leftMargin = 300 * i;
+            topDateLayout.setLayoutParams(otherParams);
+            TextView text = (TextView) topDateLayout.getViewById(R.id.top_date_textview);
+            text.setText(datesList.get(i).getFirst().GetDate());
+            innerLayout.addView(topDateLayout);
         }
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
