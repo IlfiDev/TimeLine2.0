@@ -116,8 +116,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         Gson gson = new Gson();
         Type type = new TypeToken<LinkedList<Note>>(){}.getType();
         String json = gson.toJson(notesList, type);
-        editor.putString("SavedNotesList", json);
-        editor.commit();
+        editor.putString("SavedNotesList", json).apply();
         super.onStop();
     }
 

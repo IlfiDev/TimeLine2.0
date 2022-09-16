@@ -97,8 +97,8 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         Gson gson = new Gson();
         Type type = new TypeToken<LinkedList<LinkedList<Note>>>(){}.getType();
         String json = gson.toJson(datesList, type);
-        editor.putString("SavedEventsList", json);
-        editor.commit();
+        editor.putString("SavedEventsList", json).apply();
+
         super.onStop();
     }
 
