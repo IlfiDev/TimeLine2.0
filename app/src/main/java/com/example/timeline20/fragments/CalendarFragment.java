@@ -184,14 +184,16 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         float default_event_leftMargin = 117 * ds.density;
         float event_topMargin = 48 * ds.density;
 
-        View something = new View(getContext());
-        something.setBackgroundResource(R.drawable.shape_event_container);
-        ConstraintLayout.LayoutParams something_params = new ConstraintLayout.LayoutParams((int) (event_leftMargin +
-                (default_event_leftMargin * (datesList.size()))), (int) (112 * ds.density));
-        something_params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-        something_params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
-        something.setLayoutParams(something_params);
-        innerLayout.addView(something);
+        if(datesList.size() != 0) {
+            View something = new View(getContext());
+            something.setBackgroundResource(R.drawable.shape_event_container);
+            ConstraintLayout.LayoutParams something_params = new ConstraintLayout.LayoutParams((int) (event_leftMargin +
+                    (default_event_leftMargin * (datesList.size()))), (int) (112 * ds.density));
+            something_params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+            something_params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            something.setLayoutParams(something_params);
+            innerLayout.addView(something);
+        }
 
         for(int i = 0; i < datesList.size(); i++){
             ListView listView = (ListView) getLayoutInflater().inflate(R.layout.inflateable_listview, null);
