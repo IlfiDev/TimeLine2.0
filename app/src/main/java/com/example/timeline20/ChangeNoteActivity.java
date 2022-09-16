@@ -94,7 +94,15 @@ public class ChangeNoteActivity extends AppCompatActivity {
 
         if(noteFromOutside == null){
             int lineCount = text.getLineCount();
-            Note note = new Note(label.getText().toString(), text.getText().toString(), time.toString(),lineCount + 1);
+            Note note;
+            if(time == null){
+                note = new Note(label.getText().toString(), text.getText().toString(),lineCount + 1);
+
+            }
+            else{
+                note = new Note(label.getText().toString(), text.getText().toString(), time.toString(),lineCount + 1);
+
+            }
             Intent data = new Intent();
             data.putExtra("note",note);
             setResult(RESULT_FIRST_USER,data);

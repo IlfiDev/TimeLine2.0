@@ -150,11 +150,8 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
                         notesList.set(itemIndex, newNote);
                         Collections.sort(notesList);
                     }
-
                 }
             }
-
-
 
         }
         SetupListView(view);
