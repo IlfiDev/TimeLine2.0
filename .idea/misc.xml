@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/drawable/shape_add_note_button.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/shape_content_edittext.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/shape_event.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/shape_event_container.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/shape_search_button.xml" value="0.125" />
         <entry key="app/src/main/res/drawable/shape_title_edittext.xml" value="0.1635" />
         <entry key="app/src/main/res/drawable/shape_top_date.xml" value="0.149" />
@@ -34,19 +35,14 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/date_layout.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/dialog_language.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/event_layout.xml" value="0.5357307718009079" />
+        <entry key="app/src/main/res/layout/event_layout.xml" value="1.5556014048902296" />
         <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.2252109087887586" />
         <entry key="app/src/main/res/layout/fragment_note.xml" value="0.34221820330059216" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/layout/inflateable_listview.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/note_layout.xml" value="0.25" />
-<<<<<<< Updated upstream
-        <entry key="app/src/main/res/layout/top_date_layout.xml" value="1.5" />
-        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1675" />
-        <entry key="app/src/main/res/mipmap-xhdpi/ic_launcher.xml" value="0.1675" />
-=======
+        <entry key="app/src/main/res/layout/something.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/top_date_layout.xml" value="0.625" />
->>>>>>> Stashed changes
       </map>
     </option>
   </component>

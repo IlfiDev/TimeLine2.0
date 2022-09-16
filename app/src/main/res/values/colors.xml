@@ -30,6 +30,7 @@
     <color name="dialog_container">#10B7D8FF</color>
 
     <color name="bar_text">#B9B9B9</color>
+    <color name="gray_100">#F8F8F8</color>
     <color name="gray_175">#F4F4F4</color>
     <color name="gray_900">#797979</color>
 </resources>

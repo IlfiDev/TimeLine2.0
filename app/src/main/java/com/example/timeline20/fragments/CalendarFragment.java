@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.text.format.Time;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -172,13 +173,34 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         ConstraintLayout layout = (ConstraintLayout) view.findViewById(R.id.fragment_calendar);
         HorizontalScrollView scrollView = (HorizontalScrollView) layout.findViewById(R.id.events_scrollview);
         ConstraintLayout innerLayout = (ConstraintLayout) scrollView.findViewById(R.id.place_for_events);
+        DisplayMetrics ds = getResources().getDisplayMetrics();
         innerLayout.removeAllViewsInLayout();
+
+        float top_date_leftMargin = 20 * ds.density;
+        float default_top_date_leftMargin = 117 * ds.density;
+        float top_date_topMargin = 12 * ds.density;
+
+        float event_leftMargin = 12 * ds.density;
+        float default_event_leftMargin = 117 * ds.density;
+        float event_topMargin = 48 * ds.density;
+
+        View something = new View(getContext());
+        something.setBackgroundResource(R.drawable.shape_event_container);
+        ConstraintLayout.LayoutParams something_params = new ConstraintLayout.LayoutParams((int) (event_leftMargin +
+                (default_event_leftMargin * (datesList.size()))), (int) (112 * ds.density));
+        something_params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
+        something_params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+        something.setLayoutParams(something_params);
+        innerLayout.addView(something);
+
         for(int i = 0; i < datesList.size(); i++){
             ListView listView = (ListView) getLayoutInflater().inflate(R.layout.inflateable_listview, null);
-            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT);
-            params.topMargin = 75;
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams((int) (106 * ds.density), ConstraintLayout.LayoutParams.WRAP_CONTENT);
+            params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            params.topMargin = (int) event_topMargin;
             params.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-            params.leftMargin = 300 * i;
+            params.leftMargin = (int) event_leftMargin;
+            event_leftMargin += default_event_leftMargin;
             listView.setLayoutParams(params);
             EventAdapter adapter = new EventAdapter(this.getContext(), R.layout.event_layout, datesList.get(i));
             listView.setAdapter(adapter);
@@ -197,15 +219,19 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
             });
             innerLayout.addView(listView);
             ConstraintLayout topDateLayout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.top_date_layout, null);
-            ConstraintLayout.LayoutParams otherParams = new ConstraintLayout.LayoutParams(200, 50);
+            ConstraintLayout.LayoutParams otherParams = new ConstraintLayout.LayoutParams((int) (90 * ds.density), (int) (24 * ds.density));
             otherParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            otherParams.topMargin = (int) top_date_topMargin;
             otherParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
-            otherParams.leftMargin = 300 * i;
+            otherParams.leftMargin = (int) top_date_leftMargin;
+            top_date_leftMargin += default_top_date_leftMargin;
+
             topDateLayout.setLayoutParams(otherParams);
             TextView text = (TextView) topDateLayout.getViewById(R.id.top_date_textview);
             text.setText(datesList.get(i).getFirst().GetDate());
             innerLayout.addView(topDateLayout);
         }
+
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

@@ -5,8 +5,7 @@
     android:maxWidth="106dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/shape_event"
-    android:hapticFeedbackEnabled="true">
+    android:background="@drawable/shape_event">
 
 
 
@@ -15,7 +14,7 @@
         android:id="@+id/event_time_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxHeight="20dp"
+        android:maxHeight="16dp"
 
         android:text="14:40"
         android:textSize="14dp"
@@ -35,7 +34,7 @@
         android:id="@+id/event_content_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxHeight="80dp"
+        android:maxHeight="82dp"
         android:maxWidth="90dp"
         android:text="Выключить газ"
         android:textColor="@color/black"
