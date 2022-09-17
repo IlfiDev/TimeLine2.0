@@ -95,5 +95,9 @@ public class Note implements Serializable,Comparable<Note> {
     public String GetDate(){
         return timeStr.split("T")[0].split("-")[2] + "." + timeStr.split("T")[0].split("-")[1];
     }
+    public String GetFullDate(){
+        return timeStr.split("T")[0].split("-")[2] + "." + timeStr.split("T")[0].split("-")[1] + "." + timeStr.split("T")[0].split("-")[0].substring(2);
+
+    }
 
 }

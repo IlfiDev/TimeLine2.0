@@ -231,7 +231,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
 
             topDateLayout.setLayoutParams(otherParams);
             TextView text = (TextView) topDateLayout.getViewById(R.id.top_date_textview);
-            text.setText(datesList.get(i).getFirst().GetDate());
+            text.setText(datesList.get(i).getFirst().GetFullDate());
             innerLayout.addView(topDateLayout);
         }
 
