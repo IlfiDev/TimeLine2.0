@@ -110,13 +110,16 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         LinkedList<Note> notesList;
         if(resultCode == 2){
             int id = (int) data.getIntExtra("note", -1);
-            int date = (int) data.getIntExtra("noteDate", -1);
-            int listIndex = findListIdByDate(date, datesList);
-            notesList = datesList.get(listIndex);
-            notesList.remove(findNoteIndexById(id, notesList));
-            if(datesList.get(listIndex).size() == 0){
-                datesList.remove(listIndex);
+            if(id != -1){
+                int date = (int) data.getIntExtra("noteDate", -1);
+                int listIndex = findListIdByDate(date, datesList);
+                notesList = datesList.get(listIndex);
+                notesList.remove(findNoteIndexById(id, notesList));
+                if(datesList.get(listIndex).size() == 0){
+                    datesList.remove(listIndex);
+                }
             }
+
         }
         else{
             newNote = (Note) data.getSerializableExtra("note");
