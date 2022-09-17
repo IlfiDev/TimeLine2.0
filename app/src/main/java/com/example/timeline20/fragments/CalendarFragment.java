@@ -216,6 +216,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
                     intent.putExtra("Text", note.GetText());
                     intent.putExtra("time", note.GetDateTime());
                     intent.putExtra("NoteObject", note);
+                    intent.putExtra("layoutNum", 1);
                     startActivityForResult(intent, 1);
                 }
             });
@@ -244,6 +245,8 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
             intent.putExtra("Title", "");
             intent.putExtra("Text", "");
             intent.putExtra("time", LocalDateTime.now().toString());
+            intent.putExtra("layoutNum", 1);
+
             startActivityForResult(intent, 1);
         }
     }
@@ -253,6 +256,8 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         intent.putExtra("Title", "");
         intent.putExtra("Text", "");
         intent.putExtra("time", LocalDateTime.now().toString());
+        intent.putExtra("layoutNum", 1);
+
         startActivityForResult(intent, 1);
     }
     @RequiresApi(api = Build.VERSION_CODES.O)

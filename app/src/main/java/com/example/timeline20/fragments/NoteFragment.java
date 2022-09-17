@@ -93,6 +93,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("Title", note.GetLabel());
                 intent.putExtra("Text", note.GetText());
                 intent.putExtra("NoteObject", note);
+                intent.putExtra("layoutNum", 0);
                 startActivityForResult(intent, 1);
             }
         });
@@ -166,6 +167,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("Title", note.GetLabel());
                 intent.putExtra("Text", note.GetText());
                 intent.putExtra("NoteObject", note);
+                intent.putExtra("layoutNum", 0);
                 startActivityForResult(intent, 1);
             }
         });

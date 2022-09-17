@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,10 +49,16 @@ public class ChangeNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_event);
+        Bundle extras = getIntent().getExtras();
+        if(extras.getInt("layoutNum") == 0){
+            setContentView(R.layout.activity_change_note);
+        }else{
+            setContentView(R.layout.activity_change_event);
+
+        }
         label = (EditText) findViewById(R.id.note_label_field);
         text = (EditText) findViewById(R.id.note_text_field_id);
-        Bundle extras = getIntent().getExtras();
+
         label.setText(extras.getString("Title"));
         if(extras.getString("time") != null){
             time = LocalDateTime.parse(extras.getString("time"));
@@ -63,14 +70,16 @@ public class ChangeNoteActivity extends AppCompatActivity {
         noteFromOutside = (Note) extras.getSerializable("NoteObject");
         deleteButton = this.findViewById(R.id.delete_button);
 
+        if(extras.getInt("layoutNum") == 1) {
+            date_button = findViewById(R.id.set_date_event_button);
+            date_button.setText(date_format.format(calendar.getTime()));
 
-        date_button = findViewById(R.id.set_date_event_button);
-        date_button.setText(date_format.format(calendar.getTime()));
+            time_button = findViewById(R.id.set_time_event_button);
+            time_button.setText(time_format.format(calendar.getTime()));
 
-        time_button = findViewById(R.id.set_time_event_button);
-        time_button.setText(time_format.format(calendar.getTime()));
+            finale_time_str.append(finale_date_format.format(calendar.getTime()));
+        }
 
-        finale_time_str.append(finale_date_format.format(calendar.getTime()));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
