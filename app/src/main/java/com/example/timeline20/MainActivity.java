@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;

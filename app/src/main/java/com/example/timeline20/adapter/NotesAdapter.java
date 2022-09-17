@@ -1,12 +1,16 @@
 package com.example.timeline20.adapter;
 
 import android.content.Context;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.timeline20.Note;
 import com.example.timeline20.R;

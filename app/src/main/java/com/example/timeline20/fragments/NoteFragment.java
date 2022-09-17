@@ -1,5 +1,7 @@
 package com.example.timeline20.fragments;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,11 +13,19 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.Scene;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.timeline20.ChangeNoteActivity;
@@ -30,6 +40,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Scanner;
 
 
 public class NoteFragment extends Fragment implements View.OnClickListener {
@@ -72,6 +83,9 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_note, container, false);
         MaterialButton addNoteButton = view.findViewById(R.id.add_note_button);
         addNoteButton.setOnClickListener(this);
+
+        MaterialButton sort_by_button = view.findViewById(R.id.sort_by_date_button);
+        sort_by_button.setOnClickListener(this);
         return view;
     }
 
@@ -129,6 +143,16 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             intent.putExtra("Title", "");
             intent.putExtra("Text", "");
             startActivityForResult(intent, 1);
+        }
+
+        if(view.getId() == R.id.sort_by_date_button) {
+
+            MaterialButton sort_by_button = getView().findViewById(R.id.sort_by_date_button);
+
+            ObjectAnimator something = ObjectAnimator.ofFloat(sort_by_button, View.TRANSLATION_X, -100f, 100f);
+            something.setDuration(5000);
+            something.setRepeatMode(ValueAnimator.REVERSE);
+            something.start();
         }
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
