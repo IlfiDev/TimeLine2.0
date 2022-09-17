@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -156,57 +159,90 @@ public class ChangeNoteActivity extends AppCompatActivity {
             case R.id.set_date_event_button:
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(ChangeNoteActivity.this,
-                        android.R.style.Theme_DeviceDefault_Dialog);
-                datePickerDialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
+                        android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        Calendar calendar_date = Calendar.getInstance();
-                        calendar_date.set(Calendar.YEAR, year);
-                        calendar_date.set(Calendar.MONTH, month);
-                        calendar_date.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        String date_str_view = date_format.format(calendar_date.getTime());
-                        date_button.setText(date_str_view);
-
                         calendar.set(Calendar.YEAR, year);
                         calendar.set(Calendar.MONTH, month);
                         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                        String date_str_view = date_format.format(calendar.getTime());
+                        date_button.setText(date_str_view);
+
+                        eventInThePast();
 
                         finale_time_str.delete(0, finale_time_str.length());
                         finale_time_str.append(finale_date_format.format(calendar.getTime()));
                         time = LocalDateTime.parse(finale_time_str);
                     }
-                });
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH));
+
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+
                 datePickerDialog.show();
                 break;
             case R.id.set_time_event_button:
 
-                Calendar time_calendar = Calendar.getInstance();
                 TimePickerDialog timePickerDialog = new TimePickerDialog(ChangeNoteActivity.this, android.R.style.Theme_DeviceDefault_Dialog, new TimePickerDialog.OnTimeSetListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                        time_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        time_calendar.set(Calendar.MINUTE, minute);
-                        String time_str_view = time_format.format(time_calendar.getTime());
-                        time_button.setText(time_str_view);
-
                         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         calendar.set(Calendar.MINUTE, minute);
+
+                        eventInThePast();
+
+
+                        String time_str_view = time_format.format(calendar.getTime());
+                        time_button.setText(time_str_view);
+
 
                         finale_time_str.delete(0, finale_time_str.length());
                         finale_time_str.append(finale_date_format.format(calendar.getTime()));
                         time = LocalDateTime.parse(finale_time_str);
                     }
-                }, time_calendar.get(Calendar.HOUR_OF_DAY), time_calendar.get(Calendar.MINUTE), true);
+                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+
                 timePickerDialog.show();
                 break;
 
             default:
                 break;
         }
+    }
+
+
+    private void eventInThePast() {
+
+        Calendar temp_calendar = Calendar.getInstance();
+        int now_year = temp_calendar.get(Calendar.YEAR);
+        int now_month = temp_calendar.get(Calendar.MONTH);
+        int now_dayOfMonth = temp_calendar.get(Calendar.DAY_OF_MONTH);
+
+        int now_hourOfDay = temp_calendar.get(Calendar.HOUR_OF_DAY);
+        int now_minites = temp_calendar.get(Calendar.MINUTE);
+
+        if ((calendar.get(Calendar.YEAR) == now_year) && (calendar.get(Calendar.MONTH) == now_month) &&
+                (calendar.get(Calendar.DAY_OF_MONTH) == now_dayOfMonth)) {
+
+            if (calendar.get(Calendar.HOUR_OF_DAY) < now_hourOfDay) {
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                Toast.makeText(ChangeNoteActivity.this, R.string.event_in_the_past, Toast.LENGTH_SHORT).show();
+            } else {
+                if ((calendar.get(Calendar.HOUR_OF_DAY) == now_hourOfDay) &&
+                        (calendar.get(Calendar.MINUTE) < now_minites)) {
+                    calendar.add(Calendar.DAY_OF_MONTH, 1);
+                    Toast.makeText(ChangeNoteActivity.this, R.string.event_in_the_past, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }
+
+        String date_str_view = date_format.format(calendar.getTime());
+        date_button.setText(date_str_view);
     }
 
 

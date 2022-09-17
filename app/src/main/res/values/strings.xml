@@ -29,5 +29,6 @@
     <string name="negative_button">Не согласен</string>
     <string name="dialog_title">Язык приложения</string>
     <string name="dialog_description">К сожалению, выбор языка недоступен. Приложение только для русских</string>
+    <string name="event_in_the_past">Установить событие на прошлое - нельзя, дата переведена на один день вперёд</string>
     
 </resources>
