@@ -12,9 +12,20 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnticipateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
 
@@ -70,6 +81,15 @@ public class MainActivity extends AppCompatActivity {
     //onClick для кнопок бара
     @SuppressLint("NonConstantResourceId")
     public void bar_buttons(View view) {
+        ViewGroup sceneRoot = (ViewGroup) findViewById(R.id.fragment_container);
+        AutoTransition autoTransition = new AutoTransition();
+        autoTransition.setDuration(65);
+        autoTransition.setInterpolator(new LinearInterpolator());
+
+        //autoTransition.setInterpolator(new OvershootInterpolator());
+        //autoTransition.setInterpolator(new CycleInterpolator(1));
+        //autoTransition.setInterpolator(new BounceInterpolator());
+        TransitionManager.beginDelayedTransition(sceneRoot, autoTransition);
         switch(view.getId()) {
             case R.id.noteFragment_button:
                 if(what_fragment_active != 1) {
