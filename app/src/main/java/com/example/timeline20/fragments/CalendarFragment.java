@@ -220,6 +220,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
                     intent.putExtra("time", note.GetDateTime());
                     intent.putExtra("NoteObject", note);
                     intent.putExtra("layoutNum", 1);
+                    intent.putExtra("event_time", note.timeStr);
                     startActivityForResult(intent, 1);
                 }
             });

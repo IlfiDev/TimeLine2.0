@@ -22,12 +22,14 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ChangeNoteActivity extends AppCompatActivity {
 
@@ -37,6 +39,8 @@ public class ChangeNoteActivity extends AppCompatActivity {
     LocalDateTime time = null;
     Note noteFromOutside;
     Button deleteButton;
+
+    boolean isNewEvent = true;
 
     StringBuilder finale_time_str = new StringBuilder();
 
@@ -74,6 +78,23 @@ public class ChangeNoteActivity extends AppCompatActivity {
         deleteButton = this.findViewById(R.id.delete_button);
 
         if(extras.getInt("layoutNum") == 1) {
+            String time_str = extras.getString("event_time", "");
+
+            if(!time_str.equals("")) {
+                isNewEvent = false;
+                String[] temp_str = time_str.split("T");
+
+                String[] date = temp_str[0].split("-");
+
+                calendar.set(Calendar.YEAR, Integer.parseInt(date[0]));
+                calendar.set(Calendar.MONTH, Integer.parseInt(date[1])-1);
+                calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date[2]));
+
+                String[] time = temp_str[1].split(":");
+                calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
+                calendar.set(Calendar.MINUTE, Integer.parseInt(time[1]));
+            }
+
             date_button = findViewById(R.id.set_date_event_button);
             date_button.setText(date_format.format(calendar.getTime()));
 
@@ -113,7 +134,6 @@ public class ChangeNoteActivity extends AppCompatActivity {
             }
             else{
                 note = new Note(label.getText().toString(), text.getText().toString(), time.toString(),lineCount + 1);
-
             }
             Intent data = new Intent();
             data.putExtra("note",note);

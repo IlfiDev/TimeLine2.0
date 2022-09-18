@@ -20,6 +20,7 @@
     <color name="noteTitle">#1C1C1C</color>
     <color name="noteText">#595959</color>
     <color name="Text">#1C1C1C</color>
+    <color name="old_event">#FF9C9C</color>
 
     <color name="noteHint">#999999</color>
 
