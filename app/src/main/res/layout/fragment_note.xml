@@ -24,50 +24,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Кнопка поиска-->
-    <Button
-        android:id="@+id/search_by_title_button"
-        style="@style/Widget.Material3.Button.Icon"
+
+
+    <!--Кнопка заметок поиска по заголовку-->
+    <View
+        android:id="@+id/waste_search_by_title_background"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_search_by_title"
+
+        app:layout_constraintTop_toBottomOf="@id/appbar_notes_textview"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"/>
+
+    <View
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ic_search_icon"
+
+        app:layout_constraintTop_toTopOf="@id/waste_search_by_title_background"
+        app:layout_constraintBottom_toBottomOf="@id/waste_search_by_title_background"
+        app:layout_constraintStart_toStartOf="@id/waste_search_by_title_background"
+        android:layout_marginStart="8dp"/>
+
+    <EditText
+        android:id="@+id/search_by_title_edittext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/primary"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="@string/search_by_title"
-        android:textColor="@color/onButton"
-        android:textSize="14sp"
-        app:icon="@drawable/ic_search_icon"
-        app:iconGravity="textStart"
-        app:iconTint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbar_notes_textview" />
+        android:hint="@string/search_by_title"
+        android:textAppearance="@style/regularTextSettings"
+        android:background="@null"
+
+        app:layout_constraintTop_toTopOf="@id/waste_search_by_title_background"
+        app:layout_constraintBottom_toBottomOf="@id/waste_search_by_title_background"
+        app:layout_constraintStart_toStartOf="@id/waste_search_by_title_background"
+        android:layout_marginStart="44dp"
+        app:layout_constraintEnd_toEndOf="@id/waste_search_by_title_background"
+        android:layout_marginEnd="16dp"/>
 
 
-    <!--Кнопка сортировки-->
-    <Button
-        android:id="@+id/sort_by_date_button"
-        style="@style/Widget.Material3.Button.TextButton.Icon"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/nunito_sans_extrabold"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="@string/sort_by_date"
-        android:textColor="@color/secondary"
-        android:textSize="14sp"
-        app:icon="@drawable/ic_sort"
-        app:iconTint="@color/secondary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_by_title_button"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <!--Место для записок-->
     <ListView
@@ -82,10 +80,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sort_by_date_button"
+        app:layout_constraintTop_toBottomOf="@+id/waste_search_by_title_background"
         tools:ignore="MissingConstraints">
 
     </ListView>
+
+    <TextView
+        android:id="@+id/no_notes_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_notes"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_sans_bold"
+
+        app:layout_constraintTop_toTopOf="@id/notes_scrollView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!--Кнопка добавления заметки-->
     <Button

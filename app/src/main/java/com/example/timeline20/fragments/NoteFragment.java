@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.transition.Scene;
@@ -26,7 +28,9 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.timeline20.ChangeNoteActivity;
 import com.example.timeline20.MainActivity;
@@ -48,6 +52,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     };
     SharedPreferences prefs;
     View view;
+    NotesAdapter adapter;
 
 
 //
@@ -84,8 +89,25 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         MaterialButton addNoteButton = view.findViewById(R.id.add_note_button);
         addNoteButton.setOnClickListener(this);
 
-        MaterialButton sort_by_button = view.findViewById(R.id.sort_by_date_button);
-        sort_by_button.setOnClickListener(this);
+        EditText search_note_by_title = view.findViewById(R.id.search_by_title_edittext);
+        search_note_by_title.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                LinkedList<Note> listNotesWithSubstr = findAllCorrectNotes(search_note_by_title.getText().toString());
+                adapter = new NotesAdapter(requireContext(), R.layout.note_layout, listNotesWithSubstr);
+                ListView listView = (ListView) getActivity().findViewById(R.id.notes_scrollView);
+                listView.setAdapter(adapter);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
         return view;
     }
 
@@ -97,8 +119,16 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
         MainActivity mainActivity = (MainActivity) getActivity();
         Objects.requireNonNull(mainActivity).change_bar_icon_color(1, true);
         ListView listView = (ListView) getActivity().findViewById(R.id.notes_scrollView);
-        NotesAdapter adapter = new NotesAdapter(this.getContext(), R.layout.note_layout, notesList);
+        adapter = new NotesAdapter(this.getContext(), R.layout.note_layout, notesList);
         listView.setAdapter(adapter);
+
+        TextView no_notes = getView().findViewById(R.id.no_notes_textview);
+        if(adapter.getCount() != 0) {
+            no_notes.setVisibility(View.GONE);
+        } else {
+            no_notes.setVisibility(View.VISIBLE);
+        }
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -199,5 +229,15 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             }
         }
         return -1;
+    }
+
+    private LinkedList<Note> findAllCorrectNotes(String substring){
+        LinkedList<Note> tempList = new LinkedList<>();
+        for(Note note : notesList){
+            if(note.GetLabel().contains(substring)){
+                tempList.addLast(note);
+            }
+        }
+        return tempList;
     }
 }

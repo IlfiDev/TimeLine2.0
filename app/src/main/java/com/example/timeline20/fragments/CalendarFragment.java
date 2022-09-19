@@ -191,6 +191,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener, 
         float default_event_leftMargin = 117 * ds.density;
         float event_topMargin = 48 * ds.density;
 
+        TextView no_events = getView().findViewById(R.id.no_events_textview);
         if(datesList.size() != 0) {
             View something = new View(getContext());
             something.setBackgroundResource(R.drawable.shape_event_container);
@@ -200,6 +201,9 @@ public class CalendarFragment extends Fragment implements View.OnClickListener, 
             something_params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
             something.setLayoutParams(something_params);
             innerLayout.addView(something);
+            no_events.setVisibility(View.GONE);
+        } else {
+            no_events.setVisibility(View.VISIBLE);
         }
 
         for(int i = 0; i < datesList.size(); i++){
@@ -349,9 +353,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener, 
             datesList.remove(listToDelete);
         }
 
-
-        MainActivity mainActivity = (MainActivity) getActivity();
-        if(mainActivity != null) mainActivity.reloadFragment(2);
+        SetupListView(requireView());
 
         return false;
     }
