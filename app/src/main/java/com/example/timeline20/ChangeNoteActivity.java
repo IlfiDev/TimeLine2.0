@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -102,6 +103,16 @@ public class ChangeNoteActivity extends AppCompatActivity {
             time_button.setText(time_format.format(calendar.getTime()));
 
             finale_time_str.append(finale_date_format.format(calendar.getTime()));
+
+            TextView change_event_layout_title = findViewById(R.id.change_event_layout_title);
+            if(extras.getBoolean("isNewEvent")) {
+                change_event_layout_title.setText(R.string.create_event);
+            }
+        } else {
+            TextView change_note_layout_title = findViewById(R.id.change_note_layout_title);
+            if (extras.getBoolean("isNewNote")) {
+                change_note_layout_title.setText(R.string.create_note);
+            }
         }
 
     }

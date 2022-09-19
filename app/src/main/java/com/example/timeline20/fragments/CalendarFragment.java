@@ -11,16 +11,20 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.format.Time;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -38,15 +42,18 @@ import java.io.LineNumberInputStream;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Objects;
 
 
-public class CalendarFragment extends Fragment implements View.OnClickListener {
+public class CalendarFragment extends Fragment implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
     LinkedList<LinkedList<Note>> datesList = new LinkedList<LinkedList<Note>>();
     View view;
     SharedPreferences prefs;
+
+    String parameterListToDelete = "";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         prefs = getContext().getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
@@ -65,9 +72,6 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-
 
         view = inflater.inflate(R.layout.fragment_calendar, container, false);
         Button addEventButton = view.findViewById(R.id.add_event_button);
@@ -221,6 +225,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
                     intent.putExtra("NoteObject", note);
                     intent.putExtra("layoutNum", 1);
                     intent.putExtra("event_time", note.timeStr);
+                    intent.putExtra("isNewEvent", false);
                     startActivityForResult(intent, 1);
                 }
             });
@@ -234,24 +239,58 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
             top_date_leftMargin += default_top_date_leftMargin;
 
             topDateLayout.setLayoutParams(otherParams);
+
+            topDateLayout.setOnClickListener(this);
+            TextView top_date_full_date = topDateLayout.findViewById(R.id.top_date_full_date);
+            top_date_full_date.setText(datesList.get(i).getFirst().GetFullFullDate());
+
             TextView text = (TextView) topDateLayout.getViewById(R.id.top_date_textview);
             text.setText(datesList.get(i).getFirst().GetFullDate());
             innerLayout.addView(topDateLayout);
         }
 
+        TextView event_dates = getView().findViewById(R.id.event_dates_textview);
+        String gap_event_dates;
+        if (datesList.size() != 0) {
+            if (datesList.size() == 1) {
+                gap_event_dates = datesList.getFirst().getFirst().GetFullDate();
+            } else {
+                gap_event_dates = datesList.getFirst().getFirst().GetFullDate() +
+                        " - " + datesList.getLast().getLast().GetFullDate();
+            }
+        } else {
+            gap_event_dates = " - ";
+        }
+        event_dates.setText(gap_event_dates);
+
     }
+
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.add_event_button) {
+        switch (view.getId()) {
+            case R.id.add_event_button:
+                Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
+                intent.putExtra("Title", "");
+                intent.putExtra("Text", "");
+                intent.putExtra("time", LocalDateTime.now().toString());
+                intent.putExtra("layoutNum", 1);
+                intent.putExtra("isNewEvent", true);
 
-            Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
-            intent.putExtra("Title", "");
-            intent.putExtra("Text", "");
-            intent.putExtra("time", LocalDateTime.now().toString());
-            intent.putExtra("layoutNum", 1);
+                startActivityForResult(intent, 1);
+                break;
+            case R.id.top_date_layout:
+                TextView top_date_full_date = view.findViewById(R.id.top_date_full_date);
+                parameterListToDelete = top_date_full_date.getText().toString();
+                PopupMenu popupMenu = new PopupMenu(getContext(), view);
+                popupMenu.setOnMenuItemClickListener(this);
+                popupMenu.inflate(R.menu.popup_menu);
+                popupMenu.show();
+                break;
 
-            startActivityForResult(intent, 1);
+            default:
+                break;
         }
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -285,5 +324,35 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
             }
         }
         return -1;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        String[] temp_data_arr;
+        if(!parameterListToDelete.equals("")) {
+            temp_data_arr = parameterListToDelete.split("\\.");
+        } else {
+            return false;
+        }
+        Calendar temp_calendar_date = Calendar.getInstance();
+
+
+        temp_calendar_date.set(Calendar.DAY_OF_MONTH, Integer.parseInt(temp_data_arr[0]));
+        temp_calendar_date.set(Calendar.MONTH, Integer.parseInt(temp_data_arr[1])-1);
+        temp_calendar_date.set(Calendar.YEAR, Integer.parseInt(temp_data_arr[2]));
+
+        int dateInDays = temp_calendar_date.get(Calendar.DAY_OF_YEAR);
+
+        int listToDelete = findListIdByDate(dateInDays, datesList);
+        if (listToDelete != -1) {
+            datesList.remove(listToDelete);
+        }
+
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+        if(mainActivity != null) mainActivity.reloadFragment(2);
+
+        return false;
     }
 }

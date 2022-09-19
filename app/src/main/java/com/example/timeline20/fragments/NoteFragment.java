@@ -142,19 +142,11 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             Intent intent = new Intent(getActivity(), ChangeNoteActivity.class);
             intent.putExtra("Title", "");
             intent.putExtra("Text", "");
+            intent.putExtra("isNewNote", true);
             startActivityForResult(intent, 1);
         }
-
-        if(view.getId() == R.id.sort_by_date_button) {
-
-            MaterialButton sort_by_button = getView().findViewById(R.id.sort_by_date_button);
-
-            ObjectAnimator something = ObjectAnimator.ofFloat(sort_by_button, View.TRANSLATION_X, -100f, 100f);
-            something.setDuration(5000);
-            something.setRepeatMode(ValueAnimator.REVERSE);
-            something.start();
-        }
     }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Note newNote;
@@ -192,6 +184,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("Text", note.GetText());
                 intent.putExtra("NoteObject", note);
                 intent.putExtra("layoutNum", 0);
+                intent.putExtra("isNewNote", false);
                 startActivityForResult(intent, 1);
             }
         });

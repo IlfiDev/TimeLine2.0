@@ -79,7 +79,7 @@
                 />
 
             <View
-                android:id="@+id/note_calendar"
+                android:id="@+id/calendar_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/ic_calendar"

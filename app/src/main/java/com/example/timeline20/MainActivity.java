@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private Integer what_fragment_active = -1;
 
     //фрагменты
-    private final NoteFragment noteFragment = new NoteFragment();
-    private final CalendarFragment calendarFragment = new CalendarFragment();
-    private final SettingsFragment settingsFragment = new SettingsFragment();
+    private NoteFragment noteFragment = new NoteFragment();
+    private CalendarFragment calendarFragment = new CalendarFragment();
+    private SettingsFragment settingsFragment = new SettingsFragment();
 
     private int theme;
     int active_color;
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     public void bar_buttons(View view) {
         ViewGroup sceneRoot = (ViewGroup) findViewById(R.id.fragment_container);
         AutoTransition autoTransition = new AutoTransition();
-        autoTransition.setDuration(65);
+        autoTransition.setDuration(50);
         autoTransition.setInterpolator(new LinearInterpolator());
 
         //autoTransition.setInterpolator(new OvershootInterpolator());
@@ -118,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
             what_fragment_active = 1;
             Log.i("switch", "1");
 
-            View temp_view = findViewById(R.id.note_icon);
-
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.fragment_container, noteFragment);
             ft.commit();
@@ -144,7 +142,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void change_bar_icon_color(int num_icon, boolean active) {
+        if (what_fragment_active == num_icon && !active) return;
 
         View temp_view;
         TextView textView;
@@ -176,7 +176,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case 2:
-                temp_view = findViewById(R.id.note_calendar);
+
+                temp_view = findViewById(R.id.calendar_icon);
                 textView = findViewById(R.id.calendar_textview);
                 if (active && theme == AppCompatDelegate.MODE_NIGHT_NO) {
                     temp_view.setBackgroundResource(R.drawable.ic_active_calendar);
@@ -208,6 +209,30 @@ public class MainActivity extends AppCompatActivity {
                     temp_view.setBackgroundResource(R.drawable.ic_settings);
                     textView.setTextColor(inactive_color);
                 }
+                break;
+        }
+    }
+
+    public void reloadFragment(int i) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        switch (i) {
+            case 1:
+                what_fragment_active = 1;
+                noteFragment = new NoteFragment();
+                ft.replace(R.id.fragment_container, noteFragment);
+                ft.commit();
+                break;
+            case 2:
+                what_fragment_active = 2;
+                calendarFragment = new CalendarFragment();
+                ft.replace(R.id.fragment_container, calendarFragment);
+                ft.commit();
+                break;
+            case 3:
+                what_fragment_active = 3;
+                settingsFragment = new SettingsFragment();
+                ft.replace(R.id.fragment_container, calendarFragment);
+                ft.commit();
                 break;
         }
     }
