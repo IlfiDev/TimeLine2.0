@@ -184,7 +184,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             int id = (int) data.getIntExtra("note", -1);
             int itemIndex = findNoteIndexById(id, notesList);
             if(itemIndex != -1){
-                notesList.remove();
+                notesList.remove(itemIndex);
             }
 
 
