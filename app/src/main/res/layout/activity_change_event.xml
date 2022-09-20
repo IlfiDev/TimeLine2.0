@@ -62,7 +62,7 @@
     <Button
         android:id="@+id/set_date_event_button"
         style="@style/Widget.Material3.Button.Icon"
-        android:layout_width="153dp"
+        android:layout_width="158dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
 
